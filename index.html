@@ -64,6 +64,7 @@ summary{list-style:none;display:flex;align-items:center;gap:15px;padding:20px;cu
 summary::-webkit-details-marker{display:none}
 .icon{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:13px;font-size:19px;font-weight:850;color:var(--blue);background:var(--blue-pale)}
 .icon.scan{color:var(--green);background:#e9f8f4}.icon.fax{color:#7c4ad1;background:#f2ecff}.icon.device{color:var(--orange);background:#fff1e7}.icon.troubleshooting{color:var(--red);background:#ffeded}
+.icon.print{color:#0f7892;background:#e6f6fa}.icon.user-box{color:#8a5a00;background:#fff6dc}.icon.paper{color:#4d5b73;background:#eef1f6}.icon.supplies{color:#b0266b;background:#fdebf4}
 .title{flex:1;min-width:0}.title strong,.title small{display:block}
 .meta{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-bottom:5px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7d8798}
 .meta b{color:#4c66a2}.meta i{font-style:normal}
@@ -153,13 +154,17 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
 <section class="training" id="training">
   <div class="section-head">
     <div><span class="eyebrow">EVERYDAY TASKS</span><h2>Training library</h2></div>
-    <p id="count" aria-live="polite">18 results</p>
+    <p id="count" aria-live="polite">33 results</p>
   </div>
   <div class="tabs" role="tablist" aria-label="Training categories">
     <button type="button" role="tab" data-tab="All" aria-selected="true" class="active">All</button>
     <button type="button" role="tab" data-tab="Copy" aria-selected="false"><span aria-hidden="true">▣</span>Copy</button>
     <button type="button" role="tab" data-tab="Scan" aria-selected="false"><span aria-hidden="true">⌁</span>Scan</button>
+    <button type="button" role="tab" data-tab="Print" aria-selected="false"><span aria-hidden="true">▤</span>Print</button>
+    <button type="button" role="tab" data-tab="User Box" aria-selected="false"><span aria-hidden="true">▦</span>User Box</button>
     <button type="button" role="tab" data-tab="Fax" aria-selected="false"><span aria-hidden="true">↗</span>Fax</button>
+    <button type="button" role="tab" data-tab="Paper" aria-selected="false"><span aria-hidden="true">▭</span>Paper</button>
+    <button type="button" role="tab" data-tab="Supplies" aria-selected="false"><span aria-hidden="true">◈</span>Supplies</button>
     <button type="button" role="tab" data-tab="Device" aria-selected="false"><span aria-hidden="true">◫</span>Device</button>
     <button type="button" role="tab" data-tab="Troubleshooting" aria-selected="false"><span aria-hidden="true">!</span>Troubleshooting</button>
     <button type="button" role="tab" data-tab="Video" aria-selected="false"><span aria-hidden="true">▶</span>Video</button>
@@ -279,35 +284,6 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
           <li><span>5</span><p>Press Start.</p></li>
         </ol>
         <div class="note"><b>Trainer tip</b><p>Combine plus two-sided printing can reduce a four-page handout to one sheet.</p></div>
-        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
-      </div>
-    </details>
-    <details class="card important" id="select-paper-tray" data-cat="Copy" data-video="1" data-search="important: make sure sensors are adjusted to paper size you never want to see question marks on the screen. copy important paper tray paper size load paper blue sensors guides choose select full cassette question marks screen video load the paper squarely in the tray and keep it below the maximum-fill line. move the paper guides so they sit snugly against the stack without bending it. close the tray, then tap paper on the copy screen. select the tray that shows the size and paper type you loaded. confirm the selection and continue the copy job. if the screen shows a different size, reopen the tray, reset the guides, and confirm the paper setting when prompted.">
-      <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
-        <span class="title">
-          <span class="meta"><b>Copy</b><i>•</i>20-sec video<em class="vid-badge">▶ Video</em></span>
-          <strong>IMPORTANT: Make Sure Sensors Are Adjusted to Paper Size</strong>
-          <small>You never want to see question marks on the screen.</small>
-        </span>
-        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
-      </summary>
-      <div class="detail">
-        <figure class="video-lesson">
-          <video controls preload="none" playsinline poster="assets/videos/select-paper-tray-poster.jpg">
-            <source src="assets/videos/select-paper-tray.mp4" type="video/mp4">
-            Your browser does not support embedded video. <a href="assets/videos/select-paper-tray.mp4">Download the video</a>.
-          </video>
-          <figcaption><span aria-hidden="true">▶</span> Video demonstration <i>•</i> voice audio cleaned and balanced</figcaption>
-        </figure>
-        <ol>
-          <li><span>1</span><p>Load the paper squarely in the tray and keep it below the maximum-fill line.</p></li>
-          <li><span>2</span><p>Move the paper guides so they sit snugly against the stack without bending it.</p></li>
-          <li><span>3</span><p>Close the tray, then tap Paper on the Copy screen.</p></li>
-          <li><span>4</span><p>Select the tray that shows the size and paper type you loaded.</p></li>
-          <li><span>5</span><p>Confirm the selection and continue the copy job.</p></li>
-        </ol>
-        <div class="note"><b>Trainer tip</b><p>If the screen shows a different size, reopen the tray, reset the guides, and confirm the paper setting when prompted.</p></div>
         <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
       </div>
     </details>
@@ -458,6 +434,189 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
       </div>
     </details>
+    <details class="card" id="scan-folder" data-cat="Scan" data-search="scan to a network folder save a scan straight into a shared folder on your office network. scan scan to folder network folder shared folder smb scan to pc computer server file path host name place originals face up in the document feeder, or face down on the glass. on the home screen, tap scan to pc. if your screen shows the classic menu, tap scan/fax instead. pick your saved folder from the address book. most offices have these set up by an administrator. no saved folder? tap + (or direct input), choose smb, then enter the host name, file path, user name, and password your administrator gave you, and tap ok. check the file type and resolution, and change them if needed. press start, then open the folder on your computer to confirm the file arrived. the user name and password must belong to someone who has access to that folder. if scans suddenly stop arriving after a password change, ask your administrator to update the saved folder destination.">
+      <summary>
+        <span class="icon scan" aria-hidden="true">⌁</span>
+        <span class="title">
+          <span class="meta"><b>Scan</b><i>•</i>2 min</span>
+          <strong>Scan to a network folder</strong>
+          <small>Save a scan straight into a shared folder on your office network.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>Place originals face up in the document feeder, or face down on the glass.</p></li>
+          <li><span>2</span><p>On the Home screen, tap Scan to PC. If your screen shows the classic menu, tap Scan/Fax instead.</p></li>
+          <li><span>3</span><p>Pick your saved folder from the address book. Most offices have these set up by an administrator.</p></li>
+          <li><span>4</span><p>No saved folder? Tap + (or Direct Input), choose SMB, then enter the Host Name, File Path, User Name, and Password your administrator gave you, and tap OK.</p></li>
+          <li><span>5</span><p>Check the File Type and Resolution, and change them if needed.</p></li>
+          <li><span>6</span><p>Press Start, then open the folder on your computer to confirm the file arrived.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>The user name and password must belong to someone who has access to that folder. If scans suddenly stop arriving after a password change, ask your administrator to update the saved folder destination.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="scan-settings" data-cat="Scan" data-search="choose scan settings set resolution, file type, compact pdf, and two-sided originals before you scan. scan scan settings resolution dpi 200 300 400 600 file type pdf compact pdf jpeg tiff docx two-sided 2-sided duplex double sided simplex original file size load originals and open your scan screen (scan to email, scan to pc, or scan/fax), then choose where to send it. if your pages are printed on both sides, tap simplex/duplex and choose 2-sided. tap resolution: 200 × 200 dpi for everyday documents, 300 × 300 dpi for sharper text, and 400 or 600 dpi only for small print or photos. tap file type and choose pdf for most documents, or compact pdf when you need a smaller file for email. for a multi-page document, keep page setting on multi page so all pages land in one file. press start. higher resolution means a bigger file that takes longer to send. if an email is too big, try compact pdf or a lower resolution. button placement can look a little different depending on how your screen is set up.">
+      <summary>
+        <span class="icon scan" aria-hidden="true">⌁</span>
+        <span class="title">
+          <span class="meta"><b>Scan</b><i>•</i>2 min</span>
+          <strong>Choose scan settings</strong>
+          <small>Set resolution, file type, Compact PDF, and two-sided originals before you scan.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>Load originals and open your scan screen (Scan to Email, Scan to PC, or Scan/Fax), then choose where to send it.</p></li>
+          <li><span>2</span><p>If your pages are printed on both sides, tap Simplex/Duplex and choose 2-Sided.</p></li>
+          <li><span>3</span><p>Tap Resolution: 200 × 200 dpi for everyday documents, 300 × 300 dpi for sharper text, and 400 or 600 dpi only for small print or photos.</p></li>
+          <li><span>4</span><p>Tap File Type and choose PDF for most documents, or Compact PDF when you need a smaller file for email.</p></li>
+          <li><span>5</span><p>For a multi-page document, keep Page Setting on Multi Page so all pages land in one file.</p></li>
+          <li><span>6</span><p>Press Start.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>Higher resolution means a bigger file that takes longer to send. If an email is too big, try Compact PDF or a lower resolution. Button placement can look a little different depending on how your screen is set up.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="print-usb" data-cat="Print" data-search="print from a usb drive print a pdf or other file straight from a usb flash drive. print usb print thumb drive flash drive memory stick external memory usb mem. print pdf jpeg plug your usb drive into the copier’s usb port. wait until the copier has fully started first. on the home screen, tap usb mem. print. if you do not see it, tap the notification icon at the top of the screen and choose print a document from external memory. tap the file you want. tap open to look inside a folder. set no. of sets, color, paper, duplex settings, and staple/punch if needed. press start. when printing is finished, remove the usb drive. pdf, compact pdf, jpeg, tiff, xps, and word, excel, or powerpoint files (.docx, .xlsx, .pptx) can be printed. your organization may have turned off usb printing for security.">
+      <summary>
+        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="title">
+          <span class="meta"><b>Print</b><i>•</i>2 min</span>
+          <strong>Print from a USB drive</strong>
+          <small>Print a PDF or other file straight from a USB flash drive.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>Plug your USB drive into the copier’s USB port. Wait until the copier has fully started first.</p></li>
+          <li><span>2</span><p>On the Home screen, tap USB Mem. Print. If you do not see it, tap the notification icon at the top of the screen and choose Print a document from External Memory.</p></li>
+          <li><span>3</span><p>Tap the file you want. Tap Open to look inside a folder.</p></li>
+          <li><span>4</span><p>Set No. of Sets, Color, Paper, Duplex Settings, and Staple/Punch if needed.</p></li>
+          <li><span>5</span><p>Press Start.</p></li>
+          <li><span>6</span><p>When printing is finished, remove the USB drive.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>PDF, Compact PDF, JPEG, TIFF, XPS, and Word, Excel, or PowerPoint files (.docx, .xlsx, .pptx) can be printed. Your organization may have turned off USB printing for security.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="secure-print" data-cat="Print" data-search="secure print with a password hold a confidential job at the copier until you enter your id and password. print secure print password document id confidential private hold release output method print driver user box system in your program, click file &gt; print, choose the copier, then click properties (or preferences). on the basic tab, set output method to secure print. enter a document id and password you will remember, click ok, then print. at the copier, open user box (it may be labeled box, or be inside classic style), then tap system &gt; secure print. enter the same document id and password and tap ok. if a list of ids appears, pick yours and then enter the password. select your document, tap print, then press start. unprinted secure jobs are deleted automatically after a set time (usually 1 day). if your office uses badge or login release instead, see “release an id &amp; print job.”">
+      <summary>
+        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="title">
+          <span class="meta"><b>Print</b><i>•</i>3 min</span>
+          <strong>Secure print with a password</strong>
+          <small>Hold a confidential job at the copier until you enter your ID and password.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>In your program, click File &gt; Print, choose the copier, then click Properties (or Preferences).</p></li>
+          <li><span>2</span><p>On the Basic tab, set Output Method to Secure Print.</p></li>
+          <li><span>3</span><p>Enter a Document ID and Password you will remember, click OK, then print.</p></li>
+          <li><span>4</span><p>At the copier, open User Box (it may be labeled Box, or be inside Classic Style), then tap System &gt; Secure Print.</p></li>
+          <li><span>5</span><p>Enter the same Document ID and Password and tap OK. If a list of IDs appears, pick yours and then enter the password.</p></li>
+          <li><span>6</span><p>Select your document, tap Print, then press Start.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>Unprinted secure jobs are deleted automatically after a set time (usually 1 day). If your office uses badge or login release instead, see “Release an ID &amp; Print job.”</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="print-driver-basics" data-cat="Print" data-search="two-sided, staple, or black and white from a windows pc change the most common print settings before you click print. print print driver settings windows pc computer properties preferences two-sided 2-sided duplex double sided staple finish black and white grayscale gray scale color select color layout quality in your program, click file &gt; print and make sure the copier is selected. click properties (or preferences) to open the copier’s settings. two-sided: on the layout tab, set print type to 2-sided. it is often already the default. staple: on the finish tab, check staple and choose the number and position of staples. black and white: on the quality tab, set select color to gray scale. click ok, then click print. staple only appears if the copier has a finisher. most programs reset these settings when you close them. tab names can look different if your office uses a different print driver.">
+      <summary>
+        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="title">
+          <span class="meta"><b>Print</b><i>•</i>2 min</span>
+          <strong>Two-sided, staple, or black and white from a Windows PC</strong>
+          <small>Change the most common print settings before you click Print.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>In your program, click File &gt; Print and make sure the copier is selected.</p></li>
+          <li><span>2</span><p>Click Properties (or Preferences) to open the copier’s settings.</p></li>
+          <li><span>3</span><p>Two-sided: on the Layout tab, set Print Type to 2-Sided. It is often already the default.</p></li>
+          <li><span>4</span><p>Staple: on the Finish tab, check Staple and choose the number and position of staples.</p></li>
+          <li><span>5</span><p>Black and white: on the Quality tab, set Select Color to Gray Scale.</p></li>
+          <li><span>6</span><p>Click OK, then click Print.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>Staple only appears if the copier has a finisher. Most programs reset these settings when you close them. Tab names can look different if your office uses a different print driver.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="userbox-save" data-cat="User Box" data-search="save a scan to a user box store a scanned document on the copier so you can print or send it later. user box user box save in user box scan to box store save document box public personal group place originals face up in the document feeder, or face down on the glass. on the home screen, tap scan to box. if your screen shows the classic menu, tap user box instead. choose the box to save into. public boxes are shared; personal and group boxes appear only when you are logged in. on the classic menu, select the box and tap save. check file name, simplex/duplex, resolution, and color, and change them if needed. press start. files left in a user box can be deleted automatically after a set time (the factory setting is 1 day). your administrator may have set this up differently, so print or send important files soon.">
+      <summary>
+        <span class="icon user-box" aria-hidden="true">▦</span>
+        <span class="title">
+          <span class="meta"><b>User Box</b><i>•</i>2 min</span>
+          <strong>Save a scan to a User Box</strong>
+          <small>Store a scanned document on the copier so you can print or send it later.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>Place originals face up in the document feeder, or face down on the glass.</p></li>
+          <li><span>2</span><p>On the Home screen, tap Scan to Box. If your screen shows the classic menu, tap User Box instead.</p></li>
+          <li><span>3</span><p>Choose the box to save into. Public boxes are shared; Personal and Group boxes appear only when you are logged in.</p></li>
+          <li><span>4</span><p>On the classic menu, select the box and tap Save.</p></li>
+          <li><span>5</span><p>Check File Name, Simplex/Duplex, Resolution, and Color, and change them if needed.</p></li>
+          <li><span>6</span><p>Press Start.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>Files left in a User Box can be deleted automatically after a set time (the factory setting is 1 day). Your administrator may have set this up differently, so print or send important files soon.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="userbox-print" data-cat="User Box" data-search="print a file from a user box open a box on the copier and print a saved document. user box user box print file box open saved document reprint combine on the home screen, tap user box (it may be labeled box, or be inside classic style). choose public, personal, or group, select your box, and tap open. if the box has a password, enter it and tap ok. select the file and tap print. change print options if needed, and tap no. of sets to enter the number of copies. press start. to print several files as one job, select up to 10 files and tap other &gt; combine.">
+      <summary>
+        <span class="icon user-box" aria-hidden="true">▦</span>
+        <span class="title">
+          <span class="meta"><b>User Box</b><i>•</i>2 min</span>
+          <strong>Print a file from a User Box</strong>
+          <small>Open a box on the copier and print a saved document.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>On the Home screen, tap User Box (it may be labeled Box, or be inside Classic Style).</p></li>
+          <li><span>2</span><p>Choose Public, Personal, or Group, select your box, and tap Open.</p></li>
+          <li><span>3</span><p>If the box has a password, enter it and tap OK.</p></li>
+          <li><span>4</span><p>Select the file and tap Print.</p></li>
+          <li><span>5</span><p>Change print options if needed, and tap No. of Sets to enter the number of copies.</p></li>
+          <li><span>6</span><p>Press Start.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>To print several files as one job, select up to 10 files and tap Other &gt; Combine.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="userbox-delete" data-cat="User Box" data-search="delete old files from a user box clear out files you no longer need so the box does not fill up. user box user box delete file remove clean up old documents box full storage memory on the home screen, tap user box (it may be labeled box, or be inside classic style). select your box and tap open. enter the box password if asked. select the file or files you want to remove. you can select more than one. tap delete. check the file details on the confirmation screen, then tap yes. if the copier says a user box is full or there is not enough storage, deleting old files frees up space. in shared public boxes, only delete files you created or were asked to remove.">
+      <summary>
+        <span class="icon user-box" aria-hidden="true">▦</span>
+        <span class="title">
+          <span class="meta"><b>User Box</b><i>•</i>1 min</span>
+          <strong>Delete old files from a User Box</strong>
+          <small>Clear out files you no longer need so the box does not fill up.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>On the Home screen, tap User Box (it may be labeled Box, or be inside Classic Style).</p></li>
+          <li><span>2</span><p>Select your box and tap Open. Enter the box password if asked.</p></li>
+          <li><span>3</span><p>Select the file or files you want to remove. You can select more than one.</p></li>
+          <li><span>4</span><p>Tap Delete.</p></li>
+          <li><span>5</span><p>Check the file details on the confirmation screen, then tap Yes.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>If the copier says a User Box is full or there is not enough storage, deleting old files frees up space. In shared Public boxes, only delete files you created or were asked to remove.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
     <details class="card" id="send-fax" data-cat="Fax" data-search="send a fax dial, preview, and send from a fax-enabled device. fax send fax number dial line outside 9 preview load originals and open scan/fax. select a saved fax destination or tap direct input, then fax. enter the full fax number, including any required outside-line prefix. review the destination and document settings. press start and wait for the job to be accepted. for a new number, send a cover sheet or test page first when possible.">
       <summary>
         <span class="icon fax" aria-hidden="true">↗</span>
@@ -546,6 +705,143 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
       </div>
     </details>
+    <details class="card" id="login-logout" data-cat="Device" data-search="log in and log out at the copier sign in with your user name and password or your id card, then sign out when done. device login log in logout log out sign in sign out user name password id card badge access key authentication account if a login screen appears, tap user name and enter your user name, then tap password and enter your password. if you see server name or operation rights, leave the defaults (operation rights: user) unless told otherwise. tap login. your name appears on the screen while you are logged in. using a card? place your id card on the card reader instead. if asked, enter your password and tap login. when you are finished, tap access to log out, then tap yes. if you walk away, the copier logs you out after a short time, but always log out yourself. login screens depend on how your administrator set up the copier. you may also see an account name screen or a public user access button.">
+      <summary>
+        <span class="icon device" aria-hidden="true">◫</span>
+        <span class="title">
+          <span class="meta"><b>Device</b><i>•</i>1 min</span>
+          <strong>Log in and log out at the copier</strong>
+          <small>Sign in with your user name and password or your ID card, then sign out when done.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>If a login screen appears, tap User Name and enter your user name, then tap Password and enter your password.</p></li>
+          <li><span>2</span><p>If you see Server Name or Operation Rights, leave the defaults (Operation Rights: User) unless told otherwise.</p></li>
+          <li><span>3</span><p>Tap Login. Your name appears on the screen while you are logged in.</p></li>
+          <li><span>4</span><p>Using a card? Place your ID card on the card reader instead. If asked, enter your password and tap Login.</p></li>
+          <li><span>5</span><p>When you are finished, tap Access to log out, then tap Yes.</p></li>
+          <li><span>6</span><p>If you walk away, the copier logs you out after a short time, but always log out yourself.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>Login screens depend on how your administrator set up the copier. You may also see an account name screen or a Public User Access button.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="wake-sleep" data-cat="Device" data-search="wake the copier from sleep mode bring a dark or sleeping screen back to life. device wake sleep mode power save low power dark screen black screen power key turn on off standby a dark screen with a flashing blue light on the power key means the copier is saving power (low power or sleep mode). tap the touch screen to wake it. wait a few seconds. waking from sleep mode takes a little longer than low power mode. if the power key light is solid or flashing orange, press the power key once to turn the copier back on. once the home screen appears, continue your job. do not press the power key or turn off the main power switch while the copier is printing. this can cause a paper jam and delete waiting jobs.">
+      <summary>
+        <span class="icon device" aria-hidden="true">◫</span>
+        <span class="title">
+          <span class="meta"><b>Device</b><i>•</i>1 min</span>
+          <strong>Wake the copier from sleep mode</strong>
+          <small>Bring a dark or sleeping screen back to life.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>A dark screen with a flashing blue light on the Power key means the copier is saving power (Low Power or Sleep mode).</p></li>
+          <li><span>2</span><p>Tap the touch screen to wake it.</p></li>
+          <li><span>3</span><p>Wait a few seconds. Waking from Sleep mode takes a little longer than Low Power mode.</p></li>
+          <li><span>4</span><p>If the Power key light is solid or flashing orange, press the Power key once to turn the copier back on.</p></li>
+          <li><span>5</span><p>Once the Home screen appears, continue your job.</p></li>
+        </ol>
+        <div class="note warn"><b>Important</b><p>Do not press the Power key or turn off the Main Power Switch while the copier is printing. This can cause a paper jam and delete waiting jobs.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="load-paper" data-cat="Paper" data-search="load paper in trays 1–2 and the bypass tray add paper the right way up and set the guides so the copier reads the size. paper load paper add paper tray 1 tray 2 drawer cassette bypass tray manual feed guides lateral guide letterhead replenish paper paper empty out of paper question marks ??? pull out the tray. do not touch the clear film inside. slide the paper guides to fit the size of paper you are loading. load the paper print side up, below the fill-line mark. (letterhead goes print side down.) flatten curled paper first. close the tray gently and check the paper size shown on the screen. bypass tray: open it (pull out the extension for large paper), load paper print side down all the way in, then slide the guide to fit. if you loaded a different size or type, tap paper on the home screen, choose the tray, set paper size and paper type, then tap ok. if the screen shows question marks or the wrong size, reopen the tray and reset the guides. see the “paper tray and blue sensors” video.">
+      <summary>
+        <span class="icon paper" aria-hidden="true">▭</span>
+        <span class="title">
+          <span class="meta"><b>Paper</b><i>•</i>2 min</span>
+          <strong>Load paper in Trays 1–2 and the bypass tray</strong>
+          <small>Add paper the right way up and set the guides so the copier reads the size.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>Pull out the tray. Do not touch the clear film inside.</p></li>
+          <li><span>2</span><p>Slide the paper guides to fit the size of paper you are loading.</p></li>
+          <li><span>3</span><p>Load the paper print side up, below the fill-line mark. (Letterhead goes print side down.) Flatten curled paper first.</p></li>
+          <li><span>4</span><p>Close the tray gently and check the paper size shown on the screen.</p></li>
+          <li><span>5</span><p>Bypass tray: open it (pull out the extension for large paper), load paper print side down all the way in, then slide the guide to fit.</p></li>
+          <li><span>6</span><p>If you loaded a different size or type, tap Paper on the Home screen, choose the tray, set Paper Size and Paper Type, then tap OK.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>If the screen shows question marks or the wrong size, reopen the tray and reset the guides. See the “Paper Tray and Blue Sensors” video.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="load-envelopes-labels" data-cat="Paper" data-search="load envelopes or labels in the bypass tray feed envelopes and label sheets safely through the bypass tray. paper envelopes envelope labels label sheets bypass tray manual feed thick 1+ paper type flap flatten envelopes to remove air, and press firmly along the flap fold. open the bypass tray. load envelopes flap side up (up to 10), or label sheets print side down (up to 20). push them in until the edges touch the back, then slide the guide to fit. when the screen asks, choose the paper type and size. or tap paper on the home screen and select the bypass tray. for envelopes, choose the matching envelope size. for labels, choose paper type thick 1+. copy or print, making sure the job uses the bypass tray. do not use envelopes with glue or peel-off strips on the flap. they can damage the copier. the flap side cannot be printed on, and do not add extra envelopes while it is printing.">
+      <summary>
+        <span class="icon paper" aria-hidden="true">▭</span>
+        <span class="title">
+          <span class="meta"><b>Paper</b><i>•</i>2 min</span>
+          <strong>Load envelopes or labels in the bypass tray</strong>
+          <small>Feed envelopes and label sheets safely through the bypass tray.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>Flatten envelopes to remove air, and press firmly along the flap fold.</p></li>
+          <li><span>2</span><p>Open the bypass tray. Load envelopes flap side up (up to 10), or label sheets print side down (up to 20).</p></li>
+          <li><span>3</span><p>Push them in until the edges touch the back, then slide the guide to fit.</p></li>
+          <li><span>4</span><p>When the screen asks, choose the paper type and size. Or tap Paper on the Home screen and select the bypass tray.</p></li>
+          <li><span>5</span><p>For envelopes, choose the matching envelope size. For labels, choose paper type Thick 1+.</p></li>
+          <li><span>6</span><p>Copy or print, making sure the job uses the bypass tray.</p></li>
+        </ol>
+        <div class="note warn"><b>Important</b><p>Do not use envelopes with glue or peel-off strips on the flap. They can damage the copier. The flap side cannot be printed on, and do not add extra envelopes while it is printing.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="replace-toner" data-cat="Supplies" data-search="replace a toner cartridge swap in a new cartridge when the screen tells you it is time. supplies toner cartridge replace toner change toner empty depleted replenish toner black cyan magenta yellow ink supplies wait for the message telling you to replace toner. only replace the color shown. tap start guidance to see an animation. open the front door of the copier. pull out the cartridge for the color shown. shake the new cartridge well, about 5 to 10 times. slide the new cartridge into the slot with the matching color label until it stops. close the front door and check that the message clears. never open or force a toner cartridge. keep toner away from children and open flames. if toner gets on your skin, wash with soap and water. handle the old cartridge the way your service agreement says.">
+      <summary>
+        <span class="icon supplies" aria-hidden="true">◈</span>
+        <span class="title">
+          <span class="meta"><b>Supplies</b><i>•</i>3 min</span>
+          <strong>Replace a toner cartridge</strong>
+          <small>Swap in a new cartridge when the screen tells you it is time.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>Wait for the message telling you to replace toner. Only replace the color shown. Tap Start Guidance to see an animation.</p></li>
+          <li><span>2</span><p>Open the front door of the copier.</p></li>
+          <li><span>3</span><p>Pull out the cartridge for the color shown.</p></li>
+          <li><span>4</span><p>Shake the new cartridge well, about 5 to 10 times.</p></li>
+          <li><span>5</span><p>Slide the new cartridge into the slot with the matching color label until it stops.</p></li>
+          <li><span>6</span><p>Close the front door and check that the message clears.</p></li>
+        </ol>
+        <div class="note warn"><b>Important</b><p>Never open or force a toner cartridge. Keep toner away from children and open flames. If toner gets on your skin, wash with soap and water. Handle the old cartridge the way your service agreement says.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="replace-waste-toner" data-cat="Supplies" data-search="replace the waste toner box put in a new waste toner box when the copier says the old one is full. supplies waste toner box full replace waste toner container supplies when the screen says the waste toner box needs replacing, tap start guidance and follow the pictures. open the front door of the copier. press the two blue release buttons and pull out the used waste toner box. put the used box in a plastic bag and store it in a box by itself. take the new waste toner box out of its packaging and slide it in all the way. close the front door and check that the message clears. your service provider collects used waste toner boxes. do not open one or throw it in a fire. on some service contracts, your service provider replaces this part instead.">
+      <summary>
+        <span class="icon supplies" aria-hidden="true">◈</span>
+        <span class="title">
+          <span class="meta"><b>Supplies</b><i>•</i>3 min</span>
+          <strong>Replace the waste toner box</strong>
+          <small>Put in a new waste toner box when the copier says the old one is full.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>When the screen says the waste toner box needs replacing, tap Start Guidance and follow the pictures.</p></li>
+          <li><span>2</span><p>Open the front door of the copier.</p></li>
+          <li><span>3</span><p>Press the two blue release buttons and pull out the used waste toner box.</p></li>
+          <li><span>4</span><p>Put the used box in a plastic bag and store it in a box by itself.</p></li>
+          <li><span>5</span><p>Take the new waste toner box out of its packaging and slide it in all the way.</p></li>
+          <li><span>6</span><p>Close the front door and check that the message clears.</p></li>
+        </ol>
+        <div class="note warn"><b>Important</b><p>Your service provider collects used waste toner boxes. Do not open one or throw it in a fire. On some service contracts, your service provider replaces this part instead.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
     <details class="card" id="paper-jam" data-cat="Troubleshooting" data-search="clear a paper jam safely follow the animated guide and avoid torn paper inside the device. troubleshooting paper jam misfeed stuck torn door lever roller read the screen to identify the highlighted door or tray. open only the areas shown in the animated guide. turn green knobs and move green levers in the indicated direction. pull paper slowly with both hands and remove every torn piece. close each door firmly and confirm the message clears. do not touch labeled hot areas in the fusing section. call support if paper tears where you cannot safely reach it.">
       <summary>
         <span class="icon troubleshooting" aria-hidden="true">!</span>
@@ -587,6 +883,53 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
           <li><span>5</span><p>If appropriate, select a different tray and continue the job.</p></li>
         </ol>
         <div class="note"><b>Trainer tip</b><p>Heavy, label, transparency, and letterhead settings affect temperature and speed—do not label them as Plain paper.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="panel-messages" data-cat="Troubleshooting" data-search="common screen messages and what to do quick fixes for toner, paper, and door messages on the copier screen. troubleshooting messages error warning toner low toner is low replace toner toner depleted paper empty out of paper replenish paper close door door open cover open original left on glass “toner is low. replace when indicated.” nothing to do yet. just make sure a spare cartridge is ready. “the toner cartridge needs to be replaced” or “toner is depleted.” replace the color shown (see “replace a toner cartridge”). “replenish paper.” or “load paper into the bypass tray.” add paper of the size shown to the tray shown. “the part indicated … is open.” firmly close the door or cover highlighted on the screen, including any finisher door. “paper of matching size is not available.” load the right paper, or choose a different paper size or tray. “original left on glass.” lift the cover and remove your original. if a message keeps coming back after you fix it, contact your service provider. exact wording can vary a little by model and software version. if a color toner runs out, you can usually keep printing in black by tapping continue.">
+      <summary>
+        <span class="icon troubleshooting" aria-hidden="true">!</span>
+        <span class="title">
+          <span class="meta"><b>Troubleshooting</b><i>•</i>2 min</span>
+          <strong>Common screen messages and what to do</strong>
+          <small>Quick fixes for toner, paper, and door messages on the copier screen.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>“Toner is low. Replace when indicated.” Nothing to do yet. Just make sure a spare cartridge is ready.</p></li>
+          <li><span>2</span><p>“The Toner Cartridge needs to be replaced” or “Toner is depleted.” Replace the color shown (see “Replace a toner cartridge”).</p></li>
+          <li><span>3</span><p>“Replenish Paper.” or “Load paper into the Bypass Tray.” Add paper of the size shown to the tray shown.</p></li>
+          <li><span>4</span><p>“The part indicated … is open.” Firmly close the door or cover highlighted on the screen, including any finisher door.</p></li>
+          <li><span>5</span><p>“Paper of matching size is not available.” Load the right paper, or choose a different paper size or tray.</p></li>
+          <li><span>6</span><p>“Original left on glass.” Lift the cover and remove your original.</p></li>
+          <li><span>7</span><p>If a message keeps coming back after you fix it, contact your service provider.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>Exact wording can vary a little by model and software version. If a color toner runs out, you can usually keep printing in black by tapping Continue.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card" id="scan-email-missing" data-cat="Troubleshooting" data-search="scan to email didn’t arrive find a missing scan: check spam, the address, and the file size. troubleshooting scan to email not received missing didn't arrive spam junk folder wrong address typo file size too large attachment job list log scan to me check your spam or junk folder, and search your inbox for the copier’s sender name. at the copier, tap job list, then log. find your scan and tap details to see whether it finished and where it went. check that the email address is spelled correctly. if you typed it in, try picking it from the address book instead. if the scan had many pages, color, or high resolution, scan it again using compact pdf or a lower resolution. if your copier shows scan to me after you log in, send a test to yourself. still missing? give your it contact the time of the scan and any error shown in the log. your email system may limit attachment size. your administrator may have set the copier to split large emails or send a download link instead.">
+      <summary>
+        <span class="icon troubleshooting" aria-hidden="true">!</span>
+        <span class="title">
+          <span class="meta"><b>Troubleshooting</b><i>•</i>3 min</span>
+          <strong>Scan to email didn’t arrive</strong>
+          <small>Find a missing scan: check spam, the address, and the file size.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <ol>
+          <li><span>1</span><p>Check your spam or junk folder, and search your inbox for the copier’s sender name.</p></li>
+          <li><span>2</span><p>At the copier, tap Job List, then Log. Find your scan and tap Details to see whether it finished and where it went.</p></li>
+          <li><span>3</span><p>Check that the email address is spelled correctly. If you typed it in, try picking it from the address book instead.</p></li>
+          <li><span>4</span><p>If the scan had many pages, color, or high resolution, scan it again using Compact PDF or a lower resolution.</p></li>
+          <li><span>5</span><p>If your copier shows Scan to Me after you log in, send a test to yourself.</p></li>
+          <li><span>6</span><p>Still missing? Give your IT contact the time of the scan and any error shown in the Log.</p></li>
+        </ol>
+        <div class="note"><b>Trainer tip</b><p>Your email system may limit attachment size. Your administrator may have set the copier to split large emails or send a download link instead.</p></div>
         <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
       </div>
     </details>
