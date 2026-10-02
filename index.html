@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Copier Training Hub</title>
+<title>MFP Training Hub</title>
 <meta name="description" content="Private, searchable copier training for everyday tasks.">
 <meta name="theme-color" content="#10285f">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23165dff'/%3E%3Ctext x='20' y='26' font-family='Arial' font-weight='800' font-size='15' fill='white' text-anchor='middle'%3ECT%3C/text%3E%3C/svg%3E">
@@ -78,6 +78,20 @@ summary::-webkit-details-marker{display:none}
 .video-lesson video{display:block;width:min(100%,280px);aspect-ratio:9/16;background:#101522;border-radius:14px;box-shadow:0 12px 28px rgba(28,41,68,.16)}
 .video-lesson figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:10px;font-size:11px;font-weight:650;color:#6f7b8f}
 .video-lesson figcaption span{color:var(--blue)}.video-lesson figcaption i{font-style:normal}
+/* v5: chaptered video card + "Watch this in the video" links (one shared player) */
+.icon.video{color:#b23b79;background:#ffedf6}
+.card{scroll-margin-top:64px}
+.card.wide[open]{grid-column:1/-1}
+.video-lesson.has-chapters{display:flex;flex-wrap:wrap;align-items:flex-start;gap:20px 28px}
+.video-lesson.has-chapters .player{flex:none;width:min(100%,280px)}
+.chapters{flex:1 1 300px;min-width:0;list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.chap{display:flex;align-items:flex-start;gap:12px;width:100%;padding:9px 12px;text-align:left;background:#f8faff;border:1px solid #e1e7f2;border-radius:11px;transition:border-color .2s,background .2s}
+.chap:hover{border-color:#b8c9ed}.chap[aria-current="true"]{background:var(--blue-pale);border-color:var(--blue)}
+.chap time{flex:none;min-width:38px;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--blue)}
+.chap b{display:block;font-size:13.5px;line-height:1.3}.chap small{display:block;margin-top:2px;font-size:12px;line-height:1.4;color:var(--muted)}
+.watch-links{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 2px}
+.watch-link{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;padding:8px 12px;font-size:12.5px;font-weight:750;color:#b23b79;text-decoration:none;background:#ffedf6;border:1px solid #f6cfe2;border-radius:10px}
+.watch-link:hover{border-color:#e79bc2}.watch-link small{font-size:11.5px;font-weight:600;color:#8d5f77}
 .gallery{display:grid;gap:13px;margin:18px 0 22px}
 .gallery-head{display:flex;justify-content:space-between;align-items:center;gap:14px}
 .gallery-head b{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#2a4f91}.gallery-head span{font-size:11px;color:#8a94a5}
@@ -111,19 +125,19 @@ footer p{margin:0}footer span{margin:0 6px}
 @media (max-width:560px){html{scroll-padding-top:70px}.site-header{height:64px;padding:0 16px}.tabs{top:64px}.brand small,.site-header nav a{display:none}.site-header nav button{padding:8px 11px}
 .hero{padding:56px 18px 60px}.hero h1{font-size:40px}.search{height:58px;padding-left:15px}.search input{margin:0 9px;font-size:16px}.search kbd{display:none}.popular span{width:100%}.hero-card{padding:24px}
 .training{padding:52px 14px 60px}.section-head{align-items:flex-start}.section-head>p{margin-top:26px}
-summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:4px 16px 20px}.video-lesson video{width:100%;max-width:320px;margin:0 auto}.video-lesson figcaption{justify-content:center}
+summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:4px 16px 20px}.video-lesson video{width:100%;max-width:320px;margin:0 auto}.video-lesson figcaption{justify-content:center}.video-lesson.has-chapters .player{width:100%;max-width:320px;margin:0 auto}.watch-link{width:100%}
 .actions button{flex:1;padding:12px}.reminder{margin:0 14px 36px;padding:28px 22px;border-radius:20px}.reminder button{width:100%}footer{padding:20px 20px 34px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 .grid>.card[hidden]{display:none}
-@media print{.site-header,.hero,.tabs,.reminder,.actions,footer,.skip,.video-lesson{display:none!important}body{background:#fff}.training{max-width:none;padding:0}.grid{grid-template-columns:1fr}.card[open]{grid-row:auto}.card{box-shadow:none;break-inside:avoid}.detail{padding-left:20px}}
+@media print{.site-header,.hero,.tabs,.reminder,.actions,footer,.skip,.video-lesson,.watch-links{display:none!important}.video-lesson.has-chapters{display:block!important}.video-lesson.has-chapters .player{display:none!important}body{background:#fff}.training{max-width:none;padding:0}.grid{grid-template-columns:1fr}.card[open]{grid-row:auto}.card{box-shadow:none;break-inside:avoid}.detail{padding-left:20px}}
 </style>
 </head>
 <body>
 <a class="skip" href="#training">Skip to training</a>
 <header class="site-header">
-  <a class="brand" href="#top" aria-label="Copier Training home">
+  <a class="brand" href="#top" aria-label="MFP Training home">
     <span class="brand-mark">CT</span>
-    <span><b>Copier Training</b><small>Quick-reference hub</small></span>
+    <span><b>MFP Training</b><small>Quick-reference hub</small></span>
   </a>
   <nav aria-label="Main navigation">
     <a href="#training">Training</a>
@@ -1404,7 +1418,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
 </section>
 </main>
 <footer>
-  <p>Copier Training Hub <span>•</span> Internal quick-reference resource</p>
+  <p>MFP Training Hub <span>•</span> Internal quick-reference resource</p>
   <p>For most Konica Minolta i-Series devices. Features and screen labels may vary by model and configuration.</p>
 </footer>
 <script>
@@ -1428,8 +1442,19 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
   window.addEventListener('afterprint',function(){cards.forEach(function(c,i){c.open=opened[i];});});
   document.querySelectorAll('.copy-btn').forEach(function(b){b.addEventListener('click',function(){var c=b.closest('.card'),txt=c.querySelector('summary strong').textContent+'\n\n'+
     [].map.call(c.querySelectorAll('.detail li p'),function(p,i){return (i+1)+'. '+p.textContent;}).join('\n');
+    var ch=[].map.call(c.querySelectorAll('.chap'),function(b){return b.querySelector('time').textContent+'  '+b.querySelector('b').textContent;});if(ch.length)txt+='Chapters:\n'+ch.join('\n');
     var tip=c.querySelector('.note:not(.warn) p'),w=c.querySelector('.note.warn p');if(tip)txt+='\n\nTip: '+tip.textContent;if(w)txt+='\n\nImportant: '+w.textContent;
     (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy steps';},1800);},function(){b.textContent='Copy unavailable';setTimeout(function(){b.textContent='Copy steps';},1800);});});});
+  // chaptered video: chapter buttons and "Watch this in the video" links seek the ONE shared player (works on iOS Safari: play() runs inside the tap)
+  function seek(v,t){v._to=t;var go=function(){if(v._to==null||v.readyState<1)return;try{v.currentTime=v._to;}catch(e){}if(Math.abs(v.currentTime-v._to)<1.5)v._to=null;};
+    if(!v._seekInit){v._seekInit=1;['loadedmetadata','canplay','playing'].forEach(function(ev){v.addEventListener(ev,function(){go();});});}
+    go();var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});}
+  document.querySelectorAll('.video-lesson.has-chapters').forEach(function(f){var v=f.querySelector('video'),bs=[].slice.call(f.querySelectorAll('.chap'));
+    bs.forEach(function(b){b.addEventListener('click',function(){seek(v,+b.dataset.t);});});
+    var mark=function(){var cur=null;bs.forEach(function(b){if(v.currentTime+0.25>=+b.dataset.t)cur=b;});bs.forEach(function(b){b.setAttribute('aria-current',b===cur?'true':'false');});};
+    ['timeupdate','seeked','emptied','loadedmetadata'].forEach(function(ev){v.addEventListener(ev,mark);});});
+  document.querySelectorAll('.watch-link').forEach(function(a){a.addEventListener('click',function(e){var c=document.getElementById(a.dataset.videoCard);if(!c)return;e.preventDefault();
+    q.value='';setTab('Video');cards.forEach(function(o){if(o!==c&&o.open)o.open=false;});c.open=true;seek(c.querySelector('video'),+a.dataset.t);c.scrollIntoView({block:'start'});});});
   document.addEventListener('keydown',function(e){if(e.key==='/'&&['INPUT','TEXTAREA'].indexOf(document.activeElement.tagName)<0){e.preventDefault();q.focus();}if(e.key==='Escape')q.blur();});
 })();
 </script>
