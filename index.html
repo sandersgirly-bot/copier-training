@@ -50,7 +50,8 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}a,button,summary{-
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:24px}
 .section-head h2{margin:10px 0 0;font-size:clamp(30px,4vw,42px);letter-spacing:-.04em}
 .section-head>p{margin:0 0 5px;font-size:13px;color:var(--muted)}
-.tabs{position:sticky;top:72px;z-index:10;display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;padding:10px 2px 14px;margin:0 -2px 4px;background:linear-gradient(var(--canvas) 80%,rgba(246,248,252,0))}
+.lib-bar{position:sticky;top:72px;z-index:10;display:flex;align-items:center;gap:9px;padding:10px 2px 14px;margin:0 -2px 4px;background:linear-gradient(var(--canvas) 80%,rgba(246,248,252,0))}
+.tabs{flex:1;min-width:0;display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;padding:2px}
 .tabs::-webkit-scrollbar{display:none}
 .tabs button{flex:none;display:flex;align-items:center;gap:7px;padding:11px 15px;font-size:13px;font-weight:700;color:#5b6578;background:#fff;border:1px solid var(--line);border-radius:11px}
 .tabs button:hover{border-color:#aac0ec}.tabs button.active{color:#fff;background:var(--blue);border-color:var(--blue);box-shadow:0 8px 22px rgba(22,93,255,.2)}
@@ -63,6 +64,7 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}a,button,summary{-
 summary{list-style:none;display:flex;align-items:center;gap:15px;padding:20px;cursor:pointer}
 summary::-webkit-details-marker{display:none}
 .icon{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:13px;font-size:19px;font-weight:850;color:var(--blue);background:var(--blue-pale)}
+.icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .icon.scan{color:var(--green);background:#e9f8f4}.icon.fax{color:#7c4ad1;background:#f2ecff}.icon.device{color:var(--orange);background:#fff1e7}.icon.troubleshooting{color:var(--red);background:#ffeded}
 .icon.print{color:#0f7892;background:#e6f6fa}.icon.user-box{color:#8a5a00;background:#fff6dc}.icon.paper{color:#4d5b73;background:#eef1f6}.icon.supplies{color:#b0266b;background:#fdebf4}
 .title{flex:1;min-width:0}.title strong,.title small{display:block}
@@ -122,14 +124,49 @@ summary::-webkit-details-marker{display:none}
 footer{display:flex;justify-content:space-between;gap:30px;padding:24px clamp(20px,6vw,90px) 40px;font-size:11.5px;line-height:1.5;color:#727d8f}
 footer p{margin:0}footer span{margin:0 6px}
 @media (max-width:900px){.hero{grid-template-columns:1fr}.hero-card{max-width:600px}.grid{grid-template-columns:1fr}.card[open]{grid-row:auto}.reminder{flex-direction:column;align-items:flex-start}footer{flex-direction:column;gap:8px}}
-@media (max-width:560px){html{scroll-padding-top:70px}.site-header{height:64px;padding:0 16px}.tabs{top:64px}.brand small,.site-header nav a{display:none}.site-header nav button{padding:8px 11px}
+@media (max-width:560px){html{scroll-padding-top:70px}.site-header{height:64px;padding:0 16px}.lib-bar{top:64px}.brand small,.site-header nav a{display:none}.site-header nav button{padding:8px 11px}
 .hero{padding:56px 18px 60px}.hero h1{font-size:40px}.search{height:58px;padding-left:15px}.search input{margin:0 9px;font-size:16px}.search kbd{display:none}.popular span{width:100%}.hero-card{padding:24px}
 .training{padding:52px 14px 60px}.section-head{align-items:flex-start}.section-head>p{margin-top:26px}
 summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:4px 16px 20px}.video-lesson video{width:100%;max-width:320px;margin:0 auto}.video-lesson figcaption{justify-content:center}.video-lesson.has-chapters .player{width:100%;max-width:320px;margin:0 auto}.watch-link{width:100%}
 .actions button{flex:1;padding:12px}.reminder{margin:0 14px 36px;padding:28px 22px;border-radius:20px}.reminder button{width:100%}footer{padding:20px 20px 34px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 .grid>.card[hidden]{display:none}
-@media print{.site-header,.hero,.tabs,.reminder,.actions,footer,.skip,.video-lesson,.watch-links{display:none!important}.video-lesson.has-chapters{display:block!important}.video-lesson.has-chapters .player{display:none!important}body{background:#fff}.training{max-width:none;padding:0}.grid{grid-template-columns:1fr}.card[open]{grid-row:auto}.card{box-shadow:none;break-inside:avoid}.detail{padding-left:20px}}
+@media print{.site-header,.hero,.tabs,.fn-grid,.lib-bar,.lib-icon,.reminder,.actions,footer,.skip,.video-lesson,.watch-links{display:none!important}.video-lesson.has-chapters{display:block!important}.video-lesson.has-chapters .player{display:none!important}body{background:#fff}.training{max-width:none;padding:0}.training .grid{display:grid!important}.grid{grid-template-columns:1fr}.card[open]{grid-row:auto}.card{box-shadow:none;break-inside:avoid}.detail{padding-left:20px}}
+/* v6: landing page = big colored function buttons; cards only show after picking a topic or searching */
+.c-copy{--c:#1d5bd8;--c2:#1742a8}.c-scan{--c:#0b7a55;--c2:#075e43}.c-print{--c:#0b7189;--c2:#08566a}.c-user-box{--c:#9a5b00;--c2:#7a4500}.c-fax{--c:#7432c9;--c2:#5a239f}
+.c-paper{--c:#4b5870;--c2:#36405a}.c-supplies{--c:#c0256f;--c2:#981b57}.c-device{--c:#c2470e;--c2:#9c370a}.c-troubleshooting{--c:#c62828;--c2:#9f1d1d}.c-video{--c:#2b2f3a;--c2:#14161c}
+.training[data-mode="home"] .lib-bar,.training[data-mode="home"] .grid,.training[data-mode="home"] .empty{display:none}
+.training:not([data-mode="home"]) .fn-grid{display:none}
+.training[data-mode="search"] .tabs{visibility:hidden}
+.fn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:14px}
+.fn{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;min-height:176px;padding:20px 20px 18px;color:#fff;text-decoration:none;border-radius:20px;background:linear-gradient(150deg,var(--c) 0%,var(--c2) 100%);box-shadow:0 12px 26px -14px var(--c2),0 2px 6px rgba(23,32,51,.08);transition:transform .15s,box-shadow .15s}
+.fn:before{content:"";position:absolute;right:-38px;bottom:-46px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.08);box-shadow:0 0 0 22px rgba(255,255,255,.04)}
+.fn:hover{transform:translateY(-3px);box-shadow:0 18px 32px -14px var(--c2),0 3px 8px rgba(23,32,51,.1)}
+.fn:active{transform:translateY(0)}
+.fn:focus-visible{outline:3px solid #172033;outline-offset:3px;border-radius:20px}
+.fn-icon{display:grid;place-items:center;width:58px;height:58px;border-radius:17px;background:rgba(255,255,255,.17);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.fn svg,.lib-icon svg,.tabs svg,.back svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fn-icon svg{width:30px;height:30px}
+.fn-name{position:relative;margin-top:auto;padding-top:18px;font-size:21px;font-weight:800;line-height:1.15;letter-spacing:-.02em}
+.fn-count{position:relative;margin-top:4px;font-size:13px;font-weight:650;color:#fff}
+.fn-arrow{position:absolute;top:22px;right:20px;width:22px;height:22px;opacity:.85;transition:transform .15s}
+.fn:hover .fn-arrow{transform:translateX(3px)}
+.lib-heading{display:flex;align-items:center;gap:14px}
+.lib-icon{display:none;flex:none;place-items:center;width:52px;height:52px;border-radius:15px;color:#fff;background:linear-gradient(150deg,var(--c),var(--c2))}
+.lib-icon svg{width:28px;height:28px}
+.training[data-mode="cat"] .lib-icon{display:grid}
+.back{flex:none;display:inline-flex;align-items:center;gap:7px;padding:11px 14px;font-size:13px;font-weight:750;color:var(--ink);text-decoration:none;background:#fff;border:1px solid #c9d3e3;border-radius:11px}
+.back:hover{border-color:#8fa6d4;color:var(--blue-dark)}
+.back svg{width:16px;height:16px}
+.tabs svg{flex:none;width:16px;height:16px;color:var(--c)}
+.tabs button.active{background:var(--c);border-color:var(--c);box-shadow:0 8px 20px -8px var(--c)}
+.tabs button.active svg{color:#fff}
+@media (max-width:560px){.fn-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fn{min-height:138px;padding:15px 14px 14px;border-radius:18px}.fn:focus-visible{border-radius:18px}.fn-icon{width:48px;height:48px;border-radius:14px}.fn-icon svg{width:26px;height:26px}
+.fn-name{padding-top:14px;font-size:16.5px;letter-spacing:-.025em}.fn-count{font-size:12.5px}.fn-arrow{top:16px;right:14px;width:19px;height:19px}
+.lib-icon{width:44px;height:44px;border-radius:13px}.lib-icon svg{width:24px;height:24px}.back{padding:10px 11px}.back span{font-size:12.5px}}
+@media (min-width:901px){.lib-bar,.tabs{gap:7px}.tabs button{padding:10px 12px}}
+@media (prefers-reduced-motion:reduce){.fn:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -166,28 +203,42 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
   </aside>
 </section>
 
-<section class="training" id="training">
+<section class="training" id="training" data-mode="home">
   <div class="section-head">
-    <div><span class="eyebrow">EVERYDAY TASKS</span><h2>Training library</h2></div>
-    <p id="count" aria-live="polite">49 results</p>
+    <div class="lib-heading"><span class="lib-icon" id="lib-icon" aria-hidden="true"></span><div><span class="eyebrow" id="lib-eyebrow">EVERYDAY TASKS</span><h2 id="lib-title">Training library</h2></div></div>
+    <p id="count" aria-live="polite">50 guides</p>
   </div>
-  <div class="tabs" role="tablist" aria-label="Training categories">
-    <button type="button" role="tab" data-tab="All" aria-selected="true" class="active">All</button>
-    <button type="button" role="tab" data-tab="Copy" aria-selected="false"><span aria-hidden="true">▣</span>Copy</button>
-    <button type="button" role="tab" data-tab="Scan" aria-selected="false"><span aria-hidden="true">⌁</span>Scan</button>
-    <button type="button" role="tab" data-tab="Print" aria-selected="false"><span aria-hidden="true">▤</span>Print</button>
-    <button type="button" role="tab" data-tab="User Box" aria-selected="false"><span aria-hidden="true">▦</span>User Box</button>
-    <button type="button" role="tab" data-tab="Fax" aria-selected="false"><span aria-hidden="true">↗</span>Fax</button>
-    <button type="button" role="tab" data-tab="Paper" aria-selected="false"><span aria-hidden="true">▭</span>Paper</button>
-    <button type="button" role="tab" data-tab="Supplies" aria-selected="false"><span aria-hidden="true">◈</span>Supplies</button>
-    <button type="button" role="tab" data-tab="Device" aria-selected="false"><span aria-hidden="true">◫</span>Device</button>
-    <button type="button" role="tab" data-tab="Troubleshooting" aria-selected="false"><span aria-hidden="true">!</span>Troubleshooting</button>
-    <button type="button" role="tab" data-tab="Video" aria-selected="false"><span aria-hidden="true">▶</span>Video</button>
+  <nav class="fn-grid" aria-label="Training topics">
+    <a class="fn c-copy" href="#topic-copy" data-tab="Copy"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span><span class="fn-name">Copy</span><span class="fn-count">10 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-scan" href="#topic-scan" data-tab="Scan"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M4 12h16"/></svg></span><span class="fn-name">Scan</span><span class="fn-count">6 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-print" href="#topic-print" data-tab="Print"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span><span class="fn-name">Print</span><span class="fn-count">9 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-user-box" href="#topic-user-box" data-tab="User Box"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 13 5.5 5h13L21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1.5 3h5l1.5-3h5"/></svg></span><span class="fn-name">User Box</span><span class="fn-count">4 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-fax" href="#topic-fax" data-tab="Fax"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.5 16.4v3a2 2 0 0 1-2.2 2 19.6 19.6 0 0 1-8.5-3 19.3 19.3 0 0 1-6-6 19.6 19.6 0 0 1-3-8.6A2 2 0 0 1 3.8 1.6h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.8 9.4a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.6 2z"/></svg></span><span class="fn-name">Fax</span><span class="fn-count">2 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-paper" href="#topic-paper" data-tab="Paper"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 2 8l10 5 10-5z"/><path d="m2 12.5 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></span><span class="fn-name">Paper</span><span class="fn-count">4 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-supplies" href="#topic-supplies" data-tab="Supplies"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8s-6.5 7-6.5 11.7a6.5 6.5 0 0 0 13 0C18.5 9.8 12 2.8 12 2.8z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg></span><span class="fn-name">Supplies</span><span class="fn-count">4 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-device" href="#topic-device" data-tab="Device"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><span class="fn-name">Device</span><span class="fn-count">4 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-troubleshooting" href="#topic-troubleshooting" data-tab="Troubleshooting"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span><span class="fn-name">Troubleshooting</span><span class="fn-count">6 guides</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fn c-video" href="#topic-video" data-tab="Video"><span class="fn-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="m10 8.3 5.6 3.7-5.6 3.7z" fill="currentColor"/></svg></span><span class="fn-name">Video</span><span class="fn-count">3 videos</span><svg class="fn-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </nav>
+  <div class="lib-bar">
+    <a class="back" id="back" href="#training"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>All topics</span></a>
+    <div class="tabs" role="tablist" aria-label="Training categories">
+    <button type="button" role="tab" class="c-copy" data-tab="Copy" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg>Copy</button>
+    <button type="button" role="tab" class="c-scan" data-tab="Scan" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M4 12h16"/></svg>Scan</button>
+    <button type="button" role="tab" class="c-print" data-tab="Print" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg>Print</button>
+    <button type="button" role="tab" class="c-user-box" data-tab="User Box" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 13 5.5 5h13L21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1.5 3h5l1.5-3h5"/></svg>User Box</button>
+    <button type="button" role="tab" class="c-fax" data-tab="Fax" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.5 16.4v3a2 2 0 0 1-2.2 2 19.6 19.6 0 0 1-8.5-3 19.3 19.3 0 0 1-6-6 19.6 19.6 0 0 1-3-8.6A2 2 0 0 1 3.8 1.6h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.8 9.4a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.6 2z"/></svg>Fax</button>
+    <button type="button" role="tab" class="c-paper" data-tab="Paper" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 2 8l10 5 10-5z"/><path d="m2 12.5 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg>Paper</button>
+    <button type="button" role="tab" class="c-supplies" data-tab="Supplies" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8s-6.5 7-6.5 11.7a6.5 6.5 0 0 0 13 0C18.5 9.8 12 2.8 12 2.8z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg>Supplies</button>
+    <button type="button" role="tab" class="c-device" data-tab="Device" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Device</button>
+    <button type="button" role="tab" class="c-troubleshooting" data-tab="Troubleshooting" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Troubleshooting</button>
+    <button type="button" role="tab" class="c-video" data-tab="Video" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="m10 8.3 5.6 3.7-5.6 3.7z" fill="currentColor"/></svg>Video</button>
+    </div>
   </div>
   <div class="grid">
     <details class="card" id="basic-copy" data-cat="Copy" data-search="make a basic copy choose color, quantity, paper, and start a clean copy job. copy basic black white color quantity original feeder glass place originals face up in the document feeder, or face down on the glass. tap copy on the home screen. choose auto color, full color, or black. enter the number of sets using the keypad. confirm paper is set to auto, then press start. for mixed-size originals, straighten the top-left edges before loading the feeder." open>
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>1 min</span>
           <strong>Make a basic copy</strong>
@@ -209,7 +260,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="quick-copy-screen-settings" data-cat="Copy" data-video="1" data-search="quick copy screen setting video a guided tour of the most-used settings on the copier’s quick copy screen. copy quick copy screen settings native copy color paper zoom duplex combine finishing quantity start video open copy from the home screen and review the settings before starting. choose the color mode and confirm the correct paper tray or auto paper setting. keep zoom at 100% for same-size output, or select the reduction or enlargement needed. set the original type, duplex, combine, and finishing choices for the job. enter the number of copies, review the screen one last time, and press start. press reset when you finish so the next person starts with the standard copy settings.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>1 min 53-sec video<em class="vid-badge">▶ Video</em></span>
           <strong>Quick Copy Screen Setting Video</strong>
@@ -238,7 +289,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="duplex-copy" data-cat="Copy" data-search="copy two-sided turn one- or two-sided originals into a two-sided set. copy duplex double sided 1 to 2 2 to 2 load the originals and open copy. tap duplex/combine (sometimes shown as 1-sided &gt; 1-sided). choose 1 &gt; 2 for single-sided originals or 2 &gt; 2 for double-sided originals. select the binding direction if the backs appear upside down. press start. use left bind for a book-style page turn and top bind for a calendar-style flip.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>2 min</span>
           <strong>Copy two-sided</strong>
@@ -260,7 +311,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="staple-finish" data-cat="Copy" data-search="staple and finish sets sort, staple, punch, or fold from the finishing controls. copy staple punch fold finishing sort group corner two point open copy and tap finishing, or use the staple shortcut when it appears. choose sort for complete sets or group to separate pages by original. select corner staple or 2-position staple. confirm the staple position in the preview. press start. finishing choices only appear when that device has the matching finisher installed.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>2 min</span>
           <strong>Staple and finish sets</strong>
@@ -269,6 +320,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="47"><span aria-hidden="true">▶</span> Watch this in the video (0:47)<small>External stapler</small></a></div>
         <ol>
           <li><span>1</span><p>Open Copy and tap Finishing, or use the Staple shortcut when it appears.</p></li>
           <li><span>2</span><p>Choose Sort for complete sets or Group to separate pages by original.</p></li>
@@ -282,7 +334,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="combine-pages" data-cat="Copy" data-search="combine pages on one sheet place 2 or 4 original pages onto a single printed page. copy combine 2 in 1 4 in 1 n-up save paper load the originals and open copy. tap duplex/combine, then choose combine. select 2 in 1 or 4 in 1. choose the page order and confirm the preview. press start. combine plus two-sided printing can reduce a four-page handout to one sheet.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>2 min</span>
           <strong>Combine pages on one sheet</strong>
@@ -304,7 +356,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card important" id="paper-tray-blue-sensors" data-cat="Troubleshooting" data-video="1" data-search="important: paper tray and blue sensors position the blue paper guides correctly so the copier detects the loaded paper size. troubleshooting important paper tray blue sensors guides paper size detect detection mismatch video load the paper flat and square inside the tray. move the blue side and end guides so they sit snugly against the paper stack. do not leave a gap between the blue guides and the paper, and do not squeeze the paper until it bends. close the tray and check the paper size shown on the copier screen. if the displayed size is wrong, reopen the tray and reposition the blue guides before continuing. the blue guides act as paper-size sensors. incorrect guide placement can cause the copier to select the wrong paper size or display a mismatch message.">
       <summary>
-        <span class="icon troubleshooting" aria-hidden="true">!</span>
+        <span class="icon troubleshooting" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
         <span class="title">
           <span class="meta"><b>Troubleshooting</b><i>•</i>18-sec video<em class="vid-badge">▶ Video</em></span>
           <strong>IMPORTANT: Paper Tray and Blue Sensors</strong>
@@ -313,6 +365,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="166"><span aria-hidden="true">▶</span> Watch this in the video (2:46)<small>Paper trays &amp; guides</small></a></div>
         <figure class="video-lesson">
           <video controls preload="none" playsinline poster="assets/videos/important-paper-tray-blue-sensors-poster.jpg">
             <source src="assets/videos/important-paper-tray-blue-sensors.mp4" type="video/mp4">
@@ -333,7 +386,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="paper-11x17" data-cat="Copy" data-search="copy or print on 11 × 17 use the correct tray and scaling for ledger-size pages. copy 11x17 ledger tabloid paper tray zoom scale bypass place 11 × 17 paper in a configured tray or the bypass tray. open copy and tap paper. select the tray showing 11 × 17. keep zoom at 100% for same-size output, or choose auto zoom to fit a smaller original. press start. if the tray shows the wrong size, adjust the paper guides and confirm the size on screen.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>2 min</span>
           <strong>Copy or print on 11 × 17</strong>
@@ -355,7 +408,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="copy-zoom" data-cat="Copy" data-search="reduce or enlarge a copy (zoom) shrink or enlarge with a preset, type your own percentage, or use minimal so edges don’t get cut off. copy zoom reduce enlarge shrink bigger smaller percent percentage ratio preset minimal edges cut off 25% 400% 50% 200% resize scale load your originals and open copy. tap zoom. it shows 100.0% when copies will be the same size as the original. tap a preset size, such as 64.7%, 77.2%, 78.5%, 121.4%, 129.4%, or 154.5%, or a zoom ratio button: 50.0%, 200.0%, or 400.0%. need a different size? tap the % box and type any percentage from 25.0% to 400.0% on the keypad, or use the – and + keys. press c to go back to 100.0%. if the edges of your original are getting cut off, tap minimal. it shrinks the image about 3% and centers it on the page. tap ok, then press start. when you type your own percentage, check the preview before you print so you don’t waste a stack of copies at the wrong size.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>2 min</span>
           <strong>Reduce or enlarge a copy (Zoom)</strong>
@@ -383,7 +436,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="copy-booklet" data-cat="Copy" data-search="make a booklet copy put your pages in booklet order, with center staples on letter, legal, or ledger paper if your copier has the finisher for it. copy booklet book center staple saddle stitch fold letter legal ledger 11x17 program brochure newsletter load your originals and open copy. tap booklet on the bottom row of the copy screen. it shows off until you turn it on. on some screens, booklet is under function 2. turn booklet on. the copier puts your pages in booklet order. for a stapled booklet, turn on center stapling. it works on letter, legal, or ledger booklets. check the other settings, like color and no. of sets. press start. center stapling needs optional equipment (a finisher with a saddle stitcher). if you don’t see the option, your copier doesn’t have it.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>2 min</span>
           <strong>Make a booklet copy</strong>
@@ -410,7 +463,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="copy-original-type" data-cat="Copy" data-search="choose original type and special color modes tell the copier what your original looks like (photo, map, copied paper, and more), and try 2 color or single color. copy original type text photo printed photo paper map dot matrix copied paper copy of a copy quality 2 color two color single color text priority photo priority load your original and open copy. tap original type (first key on the bottom row). the usual setting is text/photo printed. pick the choice that best matches your original: text, text/photo printed, photo printed, text/photo photopaper, photo photopaper, dot matrix original, copied paper, or map. tap close. for a special color effect, tap color and choose 2 color (text priority), 2 color (photo priority), or single color. tap close. press start. you don’t have to change original type. use it only when you want more refined output, like a photo, a map, or a copy of a copy. many copiers are set to black by default, so choose auto color when you want color copies.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>2 min</span>
           <strong>Choose Original Type and special color modes</strong>
@@ -437,7 +490,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="copy-function2-application" data-cat="Copy" data-search="find more copy features (function 2 and application) open the extra copy keys and the application menu for features like book original, card shot, and background removal. copy function 2 application more features density background removal bkgd card shot id card book original page separation tab original separate scan auto rotate text enhancement program save open copy. the row of keys along the bottom is function 1, the default screen. tap function 2 on the right for more keys, such as density, bkgd. removal, card shot, book original, and booklet. tap application to see every extra copy feature, grouped into tabs like basic, no. of originals, quality/density, edit color, layout, tailoring, stamp/composition, and other. for example, no. of originals has original settings, book original, page separation, tab original, separate scan, and auto rotate. quality/density has bkgd. removal and text enhancement. tap a feature, set it, and tap close. press start. application settings can also be saved as a program (the program key at the top of the copy screen), so you don’t have to set them up every time. function 2 can be customized, so your copier may show more or different keys.">
       <summary>
-        <span class="icon copy" aria-hidden="true">▣</span>
+        <span class="icon copy" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg></span>
         <span class="title">
           <span class="meta"><b>Copy</b><i>•</i>2 min</span>
           <strong>Find more copy features (Function 2 and Application)</strong>
@@ -465,7 +518,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="scan-email" data-cat="Scan" data-search="scan to email send a clean pdf directly from the copier. scan scan email pdf recipient subject file type resolution load originals and tap scan/fax on the home screen. select a saved email address or tap direct input to type one. choose pdf as the file type and 300 dpi for most office documents. add a subject or file name if needed. press start, then verify the scan arrives before leaving the device. use compact pdf for a smaller attachment; use higher resolution for fine print or photos.">
       <summary>
-        <span class="icon scan" aria-hidden="true">⌁</span>
+        <span class="icon scan" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M4 12h16"/></svg></span>
         <span class="title">
           <span class="meta"><b>Scan</b><i>•</i>2 min</span>
           <strong>Scan to email</strong>
@@ -487,7 +540,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="scan-usb" data-cat="Scan" data-search="scan to a usb drive save a pdf to removable storage when email is not ideal. scan scan usb thumb flash drive external memory insert the usb drive into the device usb port. tap save a document to external memory when prompted. load originals and choose pdf and the desired resolution. name the file, then press start. wait for completion and use the on-screen eject option before removing the drive. usb access may be disabled by your organization’s security policy.">
       <summary>
-        <span class="icon scan" aria-hidden="true">⌁</span>
+        <span class="icon scan" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M4 12h16"/></svg></span>
         <span class="title">
           <span class="meta"><b>Scan</b><i>•</i>2 min</span>
           <strong>Scan to a USB drive</strong>
@@ -496,6 +549,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="204"><span aria-hidden="true">▶</span> Watch this in the video (3:24)<small>USB port</small></a></div>
         <ol>
           <li><span>1</span><p>Insert the USB drive into the device USB port.</p></li>
           <li><span>2</span><p>Tap Save a document to External Memory when prompted.</p></li>
@@ -509,7 +563,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="address-book" data-cat="Scan" data-search="use the address book find saved email and fax destinations quickly. scan address book destination favorite search email fax contact open scan/fax and tap address book. use index, favorites, or search to locate the destination. tap the destination so a checkmark appears. add more recipients only when the document is appropriate for everyone selected. set the scan options and press start. always review the selected recipients before sending sensitive information.">
       <summary>
-        <span class="icon scan" aria-hidden="true">⌁</span>
+        <span class="icon scan" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M4 12h16"/></svg></span>
         <span class="title">
           <span class="meta"><b>Scan</b><i>•</i>1 min</span>
           <strong>Use the address book</strong>
@@ -531,7 +585,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="add-address" data-cat="Scan" data-search="add an email address to the mfp register a frequently used email address directly from the copier screen. scan add register address book email one touch contact mfp preset new favorites from the main menu screen, select address book. select new at the bottom of the address book screen. set address type to email. enter the name of the person whose email preset you are creating. select favorites if the address should appear on the main screen. enter the person’s full email address. select register to save the new email preset. menu names vary by permissions; an administrator may need to register destinations.">
       <summary>
-        <span class="icon scan" aria-hidden="true">⌁</span>
+        <span class="icon scan" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M4 12h16"/></svg></span>
         <span class="title">
           <span class="meta"><b>Scan</b><i>•</i>3 min</span>
           <strong>Add an Email Address to the MFP</strong>
@@ -561,7 +615,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="scan-folder" data-cat="Scan" data-search="scan to a network folder save a scan straight into a shared folder on your office network. scan scan to folder network folder shared folder smb scan to pc computer server file path host name place originals face up in the document feeder, or face down on the glass. on the home screen, tap scan to pc. if your screen shows the classic menu, tap scan/fax instead. pick your saved folder from the address book. most offices have these set up by an administrator. no saved folder? tap + (or direct input), choose smb, then enter the host name, file path, user name, and password your administrator gave you, and tap ok. check the file type and resolution, and change them if needed. press start, then open the folder on your computer to confirm the file arrived. the user name and password must belong to someone who has access to that folder. if scans suddenly stop arriving after a password change, ask your administrator to update the saved folder destination.">
       <summary>
-        <span class="icon scan" aria-hidden="true">⌁</span>
+        <span class="icon scan" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M4 12h16"/></svg></span>
         <span class="title">
           <span class="meta"><b>Scan</b><i>•</i>2 min</span>
           <strong>Scan to a network folder</strong>
@@ -584,7 +638,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="scan-settings" data-cat="Scan" data-search="choose scan settings set resolution, file type, compact pdf, and two-sided originals before you scan. scan scan settings resolution dpi 200 300 400 600 file type pdf compact pdf jpeg tiff docx two-sided 2-sided duplex double sided simplex original file size load originals and open your scan screen (scan to email, scan to pc, or scan/fax), then choose where to send it. if your pages are printed on both sides, tap simplex/duplex and choose 2-sided. tap resolution: 200 × 200 dpi for everyday documents, 300 × 300 dpi for sharper text, and 400 or 600 dpi only for small print or photos. tap file type and choose pdf for most documents, or compact pdf when you need a smaller file for email. for a multi-page document, keep page setting on multi page so all pages land in one file. press start. higher resolution means a bigger file that takes longer to send. if an email is too big, try compact pdf or a lower resolution. button placement can look a little different depending on how your screen is set up.">
       <summary>
-        <span class="icon scan" aria-hidden="true">⌁</span>
+        <span class="icon scan" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M4 12h16"/></svg></span>
         <span class="title">
           <span class="meta"><b>Scan</b><i>•</i>2 min</span>
           <strong>Choose scan settings</strong>
@@ -607,7 +661,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="print-usb" data-cat="Print" data-search="print from a usb drive print a pdf or other file straight from a usb flash drive. print usb print thumb drive flash drive memory stick external memory usb mem. print pdf jpeg plug your usb drive into the copier’s usb port. wait until the copier has fully started first. on the home screen, tap usb mem. print. if you do not see it, tap the notification icon at the top of the screen and choose print a document from external memory. tap the file you want. tap open to look inside a folder. set no. of sets, color, paper, duplex settings, and staple/punch if needed. press start. when printing is finished, remove the usb drive. pdf, compact pdf, jpeg, tiff, xps, and word, excel, or powerpoint files (.docx, .xlsx, .pptx) can be printed. your organization may have turned off usb printing for security.">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>2 min</span>
           <strong>Print from a USB drive</strong>
@@ -616,6 +670,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="204"><span aria-hidden="true">▶</span> Watch this in the video (3:24)<small>USB port</small></a></div>
         <ol>
           <li><span>1</span><p>Plug your USB drive into the copier’s USB port. Wait until the copier has fully started first.</p></li>
           <li><span>2</span><p>On the Home screen, tap USB Mem. Print. If you do not see it, tap the notification icon at the top of the screen and choose Print a document from External Memory.</p></li>
@@ -630,7 +685,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="secure-print" data-cat="Print" data-search="secure print with a password hold a confidential job at the copier until you enter your id and password. print secure print password document id confidential private hold release output method print driver user box system in your program, click file &gt; print, choose the copier, then click properties (or preferences). on the basic tab, set output method to secure print. enter a document id and password you will remember, click ok, then print. at the copier, open user box (it may be labeled box, or be inside classic style), then tap system &gt; secure print. enter the same document id and password and tap ok. if a list of ids appears, pick yours and then enter the password. select your document, tap print, then press start. unprinted secure jobs are deleted automatically after a set time (usually 1 day). if your office uses badge or login release instead, see “release an id &amp; print job.”">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>3 min</span>
           <strong>Secure print with a password</strong>
@@ -653,7 +708,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="print-driver-basics" data-cat="Print" data-search="two-sided, staple, or black and white from a windows pc change the most common print settings before you click print. print print driver settings windows pc computer properties preferences two-sided 2-sided duplex double sided staple finish black and white grayscale gray scale color select color layout quality in your program, click file &gt; print and make sure the copier is selected. click properties (or preferences) to open the copier’s settings. two-sided: on the layout tab, set print type to 2-sided. it is often already the default. staple: on the finish tab, check staple and choose the number and position of staples. black and white: on the quality tab, set select color to gray scale. click ok, then click print. staple only appears if the copier has a finisher. most programs reset these settings when you close them. tab names can look different if your office uses a different print driver.">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>2 min</span>
           <strong>Two-sided, staple, or black and white from a Windows PC</strong>
@@ -676,7 +731,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="print-my-tab" data-cat="Print" data-search="use and customize my tab in the print driver keep the settings you use most on one page of the print driver, and add, move, or remove them. print my tab print driver customize edit my tab favorite settings one page properties preferences add remove move left right in your program, click file &gt; print, choose the copier, and click properties. the driver opens on my tab, which has copies, select color, print type, original orientation, paper size, paper tray, paper type, output method, staple, and center staple and fold. to change what’s on my tab, click edit my tab… at the bottom of the window. in setting item list, click the tab that has the feature you want (basic, layout, finish, cover mode, stamp/composition, quality, or other). select the feature, then click to the left or to the right to add it to that column of my tab. to tidy up, select an item in the my tab list and use up, down, or left/right to move it, or remove to take off items you don’t use. click ok. my tab now shows your settings every time you print. staple and center staple and fold only work if the copier has the matching finisher.">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>2 min</span>
           <strong>Use and customize My Tab in the print driver</strong>
@@ -704,7 +759,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="print-favorites" data-cat="Print" data-search="save your print settings as a favorite save a group of driver settings with a name and a reminder note, then bring it back in one click. print favorite favorites favorite setting save settings preset add restore items comment reuse labels driver click file &gt; print &gt; properties and choose all the settings you want to save, such as tray, paper type, and 2-sided. next to favorite setting at the top of the window, click add…. type a name for the favorite, for example “labels.” under restore items, click select all so every setting is saved. in comment, type any reminder you want, then click ok. next time, click the down arrow next to favorite setting and choose your favorite. its name and comments appear, and the settings are applied. use the comment for loading instructions, like the pdf’s example: “place labels in bypass tray face down with short edge leading into left side of paper tray.” then anyone who uses the favorite knows how to load the paper.">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>2 min</span>
           <strong>Save your print settings as a Favorite</strong>
@@ -732,7 +787,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="print-cover-mode" data-cat="Print" data-search="add covers or insert different paper (cover mode) add a front or back cover from another tray, or insert different paper on certain pages. print cover mode front cover back cover insert tabs colored paper per page setting carbon copy interleave transparency tray bypass click file &gt; print &gt; properties, then open the cover mode tab. check front cover to add a cover page at the beginning. set front cover tray to the tray number, or bypass, that holds the cover paper. check back cover to add a page at the end, and set back cover tray. to use different paper or settings on certain pages (tabs, colored paper, 1-sided, stapling), check per page setting and click edit list…. carbon copy prints the same document again from several paper trays. set it with carbon copy settings…. transparency interleave puts a sheet of paper between printed transparencies. choose the interleave tray. click ok, then print. load the cover paper first and set its paper type so it feeds correctly (see “match the paper type to the paper’s weight”).">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>2 min</span>
           <strong>Add covers or insert different paper (Cover Mode)</strong>
@@ -760,7 +815,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="print-watermark-stamps" data-cat="Print" data-search="add a watermark, page numbers, date, or header/footer stamp draft or confidential, make your own watermark, or add page numbers and dates from the print driver. print watermark stamp draft confidential urgent top secret page number page numbering date time header footer overlay copy security copy protect composition click file &gt; print &gt; properties, then open the stamp/composition tab. check watermark and pick one from the list, such as urgent, circular, withdraw, no reproduction, top secret, confidential, or draft. to make your own, click edit…, then add. type a watermark name and watermark text, set the font name, size, style, text color, and angle, and click ok. check page number or date/time, and click edit… under it to change how it looks. check header/footer to print header or footer information on each page. other options: overlay prints a saved overlay on top of your document, and copy security prints a pattern that helps prevent copying. click ok, then print. in edit watermark, you can also choose transparent, 1st page only, or repeat.">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>2 min</span>
           <strong>Add a watermark, page numbers, date, or header/footer</strong>
@@ -789,7 +844,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="print-quality-tab" data-cat="Print" data-search="sharper prints or toner saving from a pc (quality tab) choose photo, document, or cad quality, 1200 dpi, toner save, and other print-quality settings. print print quality image quality photo document cad resolution 600 1200 dpi toner save glossy edge enhancement compression 2 color print with black brightness contrast saturation line width trapping click file &gt; print &gt; properties, then open the quality tab. image quality setting: pick document/photo (the default), document, photo, or cad. resolution: keep 600 dpi (the default), or choose 1200 dpi for the best quality. image compression: high compression (the default) prints faster. best quality takes a little longer to print. edge enhancement makes the edges of text and lines stand out: weak (the default), medium, or strong. other choices: toner save (lighter prints), glossy mode, 2 color, print with black (with gray scale, keeps colored text from printing too faint), quality adjustment (brightness, saturation, contrast), line width adjustment, and auto trapping. click ok, then print. leave the defaults for everyday printing. change them to match what you’re printing, like photos, cad drawings, or fine lines.">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>2 min</span>
           <strong>Sharper prints or toner saving from a PC (Quality tab)</strong>
@@ -817,7 +872,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="print-layout-finish-extras" data-cat="Print" data-search="booklets, hole punch, folding, and page layout from a pc print a booklet, punch holes, fold, put several pages on a sheet, or skip blank pages from the print driver. print booklet print type binding position combination 2 in 1 n-up poster skip blank pages rotate 180 chapters image shift punch hole punch 2 hole 3 hole center staple fold half fold tri-fold trifold output tray page arrangement click file &gt; print &gt; properties. layout tab: set print type to booklet, 2-sided, or 1-sided, and set binding position to auto, left bind, right bind, or top bind. to put several pages on one sheet (for example 2 in 1), or enlarge one page across several sheets to make a poster, check combination and click combination details…. other layout options: skip blank pages, rotate 180, chapters (type the pages that must start on the front of a sheet, for example 2,4,6-10), and image shift. finish tab: check punch and choose 2-hole or 3-hole and the side; check center staple and fold for booklets; or check fold and choose half-fold or tri-fold. if needed, choose the output tray and page arrangement (prioritize arranging papers or prioritize productivity). click ok, then print. punch, fold, center staple and fold, and output tray only work if the copier has the matching finisher.">
       <summary>
-        <span class="icon print" aria-hidden="true">▤</span>
+        <span class="icon print" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Print</b><i>•</i>2 min</span>
           <strong>Booklets, hole punch, folding, and page layout from a PC</strong>
@@ -846,7 +901,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="userbox-save" data-cat="User Box" data-search="save a scan to a user box store a scanned document on the copier so you can print or send it later. user box user box save in user box scan to box store save document box public personal group place originals face up in the document feeder, or face down on the glass. on the home screen, tap scan to box. if your screen shows the classic menu, tap user box instead. choose the box to save into. public boxes are shared; personal and group boxes appear only when you are logged in. on the classic menu, select the box and tap save. check file name, simplex/duplex, resolution, and color, and change them if needed. press start. files left in a user box can be deleted automatically after a set time (the factory setting is 1 day). your administrator may have set this up differently, so print or send important files soon.">
       <summary>
-        <span class="icon user-box" aria-hidden="true">▦</span>
+        <span class="icon user-box" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 13 5.5 5h13L21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1.5 3h5l1.5-3h5"/></svg></span>
         <span class="title">
           <span class="meta"><b>User Box</b><i>•</i>2 min</span>
           <strong>Save a scan to a User Box</strong>
@@ -869,7 +924,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="userbox-print" data-cat="User Box" data-search="print a file from a user box open a box on the copier and print a saved document. user box user box print file box open saved document reprint combine on the home screen, tap user box (it may be labeled box, or be inside classic style). choose public, personal, or group, select your box, and tap open. if the box has a password, enter it and tap ok. select the file and tap print. change print options if needed, and tap no. of sets to enter the number of copies. press start. to print several files as one job, select up to 10 files and tap other &gt; combine.">
       <summary>
-        <span class="icon user-box" aria-hidden="true">▦</span>
+        <span class="icon user-box" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 13 5.5 5h13L21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1.5 3h5l1.5-3h5"/></svg></span>
         <span class="title">
           <span class="meta"><b>User Box</b><i>•</i>2 min</span>
           <strong>Print a file from a User Box</strong>
@@ -892,7 +947,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="userbox-delete" data-cat="User Box" data-search="delete old files from a user box clear out files you no longer need so the box does not fill up. user box user box delete file remove clean up old documents box full storage memory on the home screen, tap user box (it may be labeled box, or be inside classic style). select your box and tap open. enter the box password if asked. select the file or files you want to remove. you can select more than one. tap delete. check the file details on the confirmation screen, then tap yes. if the copier says a user box is full or there is not enough storage, deleting old files frees up space. in shared public boxes, only delete files you created or were asked to remove.">
       <summary>
-        <span class="icon user-box" aria-hidden="true">▦</span>
+        <span class="icon user-box" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 13 5.5 5h13L21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1.5 3h5l1.5-3h5"/></svg></span>
         <span class="title">
           <span class="meta"><b>User Box</b><i>•</i>1 min</span>
           <strong>Delete old files from a User Box</strong>
@@ -914,7 +969,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="userbox-print-from-pc" data-cat="User Box" data-search="send a print job from your pc to a user box store a document on the copier from your computer so you or others can print it again later. user box user box save in user box print driver output method store reprint obtain device information box number pc computer click file &gt; print, choose the copier, and click properties. on my tab (or the basic tab), set output method to save in user box, or save in user box/print to also print a copy now. click user settings…. under save in user box, type a file name (up to 30 characters) and the user box number. don’t know the box number? click obtain device information to list the copier’s boxes with their number, name, and type, then choose one. click ok, then ok again, and print. to print it later, see “print a file from a user box.” user boxes are a good place for forms you reprint often. your administrator can also set up confidential boxes.">
       <summary>
-        <span class="icon user-box" aria-hidden="true">▦</span>
+        <span class="icon user-box" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 13 5.5 5h13L21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h5l1.5 3h5l1.5-3h5"/></svg></span>
         <span class="title">
           <span class="meta"><b>User Box</b><i>•</i>2 min</span>
           <strong>Send a print job from your PC to a User Box</strong>
@@ -942,7 +997,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="send-fax" data-cat="Fax" data-search="send a fax dial, preview, and send from a fax-enabled device. fax send fax number dial line outside 9 preview load originals and open scan/fax. select a saved fax destination or tap direct input, then fax. enter the full fax number, including any required outside-line prefix. review the destination and document settings. press start and wait for the job to be accepted. for a new number, send a cover sheet or test page first when possible.">
       <summary>
-        <span class="icon fax" aria-hidden="true">↗</span>
+        <span class="icon fax" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.5 16.4v3a2 2 0 0 1-2.2 2 19.6 19.6 0 0 1-8.5-3 19.3 19.3 0 0 1-6-6 19.6 19.6 0 0 1-3-8.6A2 2 0 0 1 3.8 1.6h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.8 9.4a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.6 2z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Fax</b><i>•</i>2 min</span>
           <strong>Send a fax</strong>
@@ -964,7 +1019,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="fax-confirmation" data-cat="Fax" data-search="print a fax confirmation check whether a fax sent successfully and keep a report. fax fax confirmation report transmission tx result history c3001i open job list, then choose log or communication list. open the send or fax history. select the fax job and review the result: complete, failed, or retry. use details for the destination, time, and result code. print the communication report if a paper confirmation is required. a completed transmission confirms delivery to the receiving fax system, not that a person read it.">
       <summary>
-        <span class="icon fax" aria-hidden="true">↗</span>
+        <span class="icon fax" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.5 16.4v3a2 2 0 0 1-2.2 2 19.6 19.6 0 0 1-8.5-3 19.3 19.3 0 0 1-6-6 19.6 19.6 0 0 1-3-8.6A2 2 0 0 1 3.8 1.6h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.8 9.4a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.6 2z"/></svg></span>
         <span class="title">
           <span class="meta"><b>Fax</b><i>•</i>2 min</span>
           <strong>Print a fax confirmation</strong>
@@ -986,7 +1041,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="id-print" data-cat="Device" data-search="release an id &amp; print job securely print a held document at the device. device id print secure held job release password login c361i sign in at the device using your organization’s normal method. tap id &amp; print or secure print. select one or more jobs and review the document names. choose print or print &amp; delete. sign out before leaving the device. print &amp; delete removes the held copy after printing; confirm you will not need to release it again.">
       <summary>
-        <span class="icon device" aria-hidden="true">◫</span>
+        <span class="icon device" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
         <span class="title">
           <span class="meta"><b>Device</b><i>•</i>1 min</span>
           <strong>Release an ID &amp; Print job</strong>
@@ -1008,7 +1063,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="meter-count" data-cat="Device" data-search="find the meter count view total color and black-and-white impressions. device meter count counter total color black service billing from the home screen, tap counter or utility. open meter count or check details. record total, black, and color counts requested by your service contact. use print list if a paper record is required. return to the home screen when finished. meter labels can differ by model; take a clear photo of the entire counter screen if unsure.">
       <summary>
-        <span class="icon device" aria-hidden="true">◫</span>
+        <span class="icon device" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
         <span class="title">
           <span class="meta"><b>Device</b><i>•</i>1 min</span>
           <strong>Find the meter count</strong>
@@ -1030,7 +1085,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="login-logout" data-cat="Device" data-search="log in and log out at the copier sign in with your user name and password or your id card, then sign out when done. device login log in logout log out sign in sign out user name password id card badge access key authentication account if a login screen appears, tap user name and enter your user name, then tap password and enter your password. if you see server name or operation rights, leave the defaults (operation rights: user) unless told otherwise. tap login. your name appears on the screen while you are logged in. using a card? place your id card on the card reader instead. if asked, enter your password and tap login. when you are finished, tap access to log out, then tap yes. if you walk away, the copier logs you out after a short time, but always log out yourself. login screens depend on how your administrator set up the copier. you may also see an account name screen or a public user access button.">
       <summary>
-        <span class="icon device" aria-hidden="true">◫</span>
+        <span class="icon device" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
         <span class="title">
           <span class="meta"><b>Device</b><i>•</i>1 min</span>
           <strong>Log in and log out at the copier</strong>
@@ -1053,7 +1108,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="wake-sleep" data-cat="Device" data-search="wake the copier from sleep mode bring a dark or sleeping screen back to life. device wake sleep mode power save low power dark screen black screen power key turn on off standby a dark screen with a flashing blue light on the power key means the copier is saving power (low power or sleep mode). tap the touch screen to wake it. wait a few seconds. waking from sleep mode takes a little longer than low power mode. if the power key light is solid or flashing orange, press the power key once to turn the copier back on. once the home screen appears, continue your job. do not press the power key or turn off the main power switch while the copier is printing. this can cause a paper jam and delete waiting jobs.">
       <summary>
-        <span class="icon device" aria-hidden="true">◫</span>
+        <span class="icon device" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
         <span class="title">
           <span class="meta"><b>Device</b><i>•</i>1 min</span>
           <strong>Wake the copier from sleep mode</strong>
@@ -1075,7 +1130,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="load-paper" data-cat="Paper" data-search="load paper in trays 1–2 and the bypass tray add paper the right way up and set the guides so the copier reads the size. paper load paper add paper tray 1 tray 2 drawer cassette bypass tray manual feed guides lateral guide letterhead replenish paper paper empty out of paper question marks ??? pull out the tray. do not touch the clear film inside. slide the paper guides to fit the size of paper you are loading. load the paper print side up, below the fill-line mark. (letterhead goes print side down.) flatten curled paper first. close the tray gently and check the paper size shown on the screen. bypass tray: open it (pull out the extension for large paper), load paper print side down all the way in, then slide the guide to fit. if you loaded a different size or type, tap paper on the home screen, choose the tray, set paper size and paper type, then tap ok. if the screen shows question marks or the wrong size, reopen the tray and reset the guides. see the “paper tray and blue sensors” video.">
       <summary>
-        <span class="icon paper" aria-hidden="true">▭</span>
+        <span class="icon paper" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 2 8l10 5 10-5z"/><path d="m2 12.5 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></span>
         <span class="title">
           <span class="meta"><b>Paper</b><i>•</i>2 min</span>
           <strong>Load paper in Trays 1–2 and the bypass tray</strong>
@@ -1084,6 +1139,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="166"><span aria-hidden="true">▶</span> Watch this in the video (2:46)<small>Paper trays &amp; guides</small></a></div>
         <ol>
           <li><span>1</span><p>Pull out the tray. Do not touch the clear film inside.</p></li>
           <li><span>2</span><p>Slide the paper guides to fit the size of paper you are loading.</p></li>
@@ -1098,7 +1154,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="load-envelopes-labels" data-cat="Paper" data-search="load envelopes or labels in the bypass tray feed envelopes and label sheets safely through the bypass tray. paper envelopes envelope labels label sheets bypass tray manual feed thick 1+ paper type flap flatten envelopes to remove air, and press firmly along the flap fold. open the bypass tray. load envelopes flap side up (up to 10), or label sheets print side down (up to 20). push them in until the edges touch the back, then slide the guide to fit. when the screen asks, choose the paper type and size. or tap paper on the home screen and select the bypass tray. for envelopes, choose the matching envelope size. for labels, choose paper type thick 1+. copy or print, making sure the job uses the bypass tray. do not use envelopes with glue or peel-off strips on the flap. they can damage the copier. the flap side cannot be printed on, and do not add extra envelopes while it is printing.">
       <summary>
-        <span class="icon paper" aria-hidden="true">▭</span>
+        <span class="icon paper" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 2 8l10 5 10-5z"/><path d="m2 12.5 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></span>
         <span class="title">
           <span class="meta"><b>Paper</b><i>•</i>2 min</span>
           <strong>Load envelopes or labels in the bypass tray</strong>
@@ -1121,7 +1177,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="paper-weight-type" data-cat="Paper" data-search="match the paper type to the paper’s weight read the g/m² on the ream label and pick the matching paper type so card stock and heavy paper feed and print correctly. paper paper weight gsm g/m2 grams heavy card stock cardstock cover thick 1 thick 1+ thick 2 thick 3 thick 4 plain paper+ ream label paper type 65 lb find the weight on the ream label, in g/m² (grams per square meter). for example, 65 lb cover is 176 g/m². find the matching paper type: plain paper 60–90, plain paper+ 91–105, thick 1 106–120, thick 1+ 121–157, thick 2 158–209, thick 3 210–256, thick 4 257–300 g/m². at the copier: open copy, tap paper, select the tray you loaded, and tap change tray setting. under paper type, choose the type from the chart (176 g/m² and 200 g/m² are both thick 2), then tap ok. printing from a pc: in the print driver, set paper tray to the tray you loaded and paper type to the same type, for example thick 2. make your copy or print as usual. auto paper select is fine for everyday paper. only choose a tray and paper type when you load something special. the driver’s paper type list also has letterhead, colored paper, recycled paper, envelope, and more.">
       <summary>
-        <span class="icon paper" aria-hidden="true">▭</span>
+        <span class="icon paper" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 2 8l10 5 10-5z"/><path d="m2 12.5 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></span>
         <span class="title">
           <span class="meta"><b>Paper</b><i>•</i>2 min</span>
           <strong>Match the paper type to the paper’s weight</strong>
@@ -1151,7 +1207,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card important" id="paper-lct-tray" data-cat="Paper" data-search="important: load the large-capacity tray (lct) without touching the orange guide if paper touches the orange guide in the lct, the copier shows an error or fault code. paper lct large capacity tray tray 3 orange guide error code fault code load paper built-in lct pull out the lct. on copiers that have one, it is usually tray 3. find the orange guide inside the tray (see the picture). load the paper flat so the stack sits next to the orange guide without touching it. if the tray holds two stacks, as in the picture, check that neither stack leans on or pushes the orange guide. close the tray gently. if paper jams in the lct later, tap start guidance and follow the lct (built-in) pictures on the screen. paper must not interfere with, touch, or push on the orange guide. if it does, you’ll get an error code or fault code.">
       <summary>
-        <span class="icon paper" aria-hidden="true">▭</span>
+        <span class="icon paper" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 2 8l10 5 10-5z"/><path d="m2 12.5 10 5 10-5"/><path d="m2 17 10 5 10-5"/></svg></span>
         <span class="title">
           <span class="meta"><b>Paper</b><i>•</i>1 min</span>
           <strong>IMPORTANT: Load the large-capacity tray (LCT) without touching the orange guide</strong>
@@ -1178,7 +1234,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="replace-toner" data-cat="Supplies" data-search="replace a toner cartridge swap in a new cartridge when the screen tells you it is time. supplies toner cartridge replace toner change toner empty depleted replenish toner black cyan magenta yellow ink supplies wait for the message telling you to replace toner. only replace the color shown. tap start guidance to see an animation. open the front door of the copier. pull out the cartridge for the color shown. shake the new cartridge well, about 5 to 10 times. slide the new cartridge into the slot with the matching color label until it stops. close the front door and check that the message clears. never open or force a toner cartridge. keep toner away from children and open flames. if toner gets on your skin, wash with soap and water. handle the old cartridge the way your service agreement says.">
       <summary>
-        <span class="icon supplies" aria-hidden="true">◈</span>
+        <span class="icon supplies" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8s-6.5 7-6.5 11.7a6.5 6.5 0 0 0 13 0C18.5 9.8 12 2.8 12 2.8z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg></span>
         <span class="title">
           <span class="meta"><b>Supplies</b><i>•</i>3 min</span>
           <strong>Replace a toner cartridge</strong>
@@ -1187,6 +1243,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="141"><span aria-hidden="true">▶</span> Watch this in the video (2:21)<small>Replacing toner</small></a></div>
         <ol>
           <li><span>1</span><p>Wait for the message telling you to replace toner. Only replace the color shown. Tap Start Guidance to see an animation.</p></li>
           <li><span>2</span><p>Open the front door of the copier.</p></li>
@@ -1201,7 +1258,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="replace-waste-toner" data-cat="Supplies" data-search="replace the waste toner box put in a new waste toner box when the copier says the old one is full. supplies waste toner box full replace waste toner container supplies when the screen says the waste toner box needs replacing, tap start guidance and follow the pictures. open the front door of the copier. press the two blue release buttons and pull out the used waste toner box. put the used box in a plastic bag and store it in a box by itself. take the new waste toner box out of its packaging and slide it in all the way. close the front door and check that the message clears. your service provider collects used waste toner boxes. do not open one or throw it in a fire. on some service contracts, your service provider replaces this part instead.">
       <summary>
-        <span class="icon supplies" aria-hidden="true">◈</span>
+        <span class="icon supplies" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8s-6.5 7-6.5 11.7a6.5 6.5 0 0 0 13 0C18.5 9.8 12 2.8 12 2.8z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg></span>
         <span class="title">
           <span class="meta"><b>Supplies</b><i>•</i>3 min</span>
           <strong>Replace the waste toner box</strong>
@@ -1210,6 +1267,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="149"><span aria-hidden="true">▶</span> Watch this in the video (2:29)<small>Waste toner box</small></a></div>
         <ol>
           <li><span>1</span><p>When the screen says the waste toner box needs replacing, tap Start Guidance and follow the pictures.</p></li>
           <li><span>2</span><p>Open the front door of the copier.</p></li>
@@ -1224,7 +1282,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="replace-staples" data-cat="Supplies" data-search="replace a staple cartridge load new staples when the copier says it’s out. the steps depend on which finisher you have. supplies staples staple cartridge replace staples out of staples add staples finisher inner finisher floor finisher saddle stitcher booklet staples wait for the screen to tell you to replace the staples, and follow the pictures it shows for your finisher. open the finisher. inner finisher: slide it out as shown in picture 1. floor finisher: open the front door. pull out the blue staple cartridge holder. squeeze the sides of the empty staple case, lift it out, and snap the new staple case into the holder. push the holder back in until it seats, then close the finisher or front door. booklet (saddle) staples: pull out the saddle stitcher by its green handle and replace saddle staple cartridge 1 or 2 the same way. instructions vary by finisher model and options. follow the pictures on your copier’s screen.">
       <summary>
-        <span class="icon supplies" aria-hidden="true">◈</span>
+        <span class="icon supplies" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8s-6.5 7-6.5 11.7a6.5 6.5 0 0 0 13 0C18.5 9.8 12 2.8 12 2.8z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg></span>
         <span class="title">
           <span class="meta"><b>Supplies</b><i>•</i>3 min</span>
           <strong>Replace a staple cartridge</strong>
@@ -1233,6 +1291,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="33"><span aria-hidden="true">▶</span> Watch this in the video (0:33)<small>Staple cartridge</small></a></div>
         <div class="gallery" aria-label="Picture guide">
           <div class="gallery-head"><b>Picture guide</b><span>Tap an image to enlarge</span></div>
           <figure><a href="assets/images/replace-staples/step-1.webp" target="_blank" rel="noopener"><img src="assets/images/replace-staples/step-1.webp" alt="Inner finisher staple replacement, pictures 1 to 5" loading="lazy" width="426" height="1050" class="fit"></a><figcaption>Inner finisher</figcaption></figure>
@@ -1253,7 +1312,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="empty-punch-scrap" data-cat="Supplies" data-search="empty the hole punch scrap box empty the paper punchings when the copier says the punch box is full. supplies hole punch scrap box punch waste punchings chad empty full finisher inner finisher floor finisher wait for the screen to tell you to empty the hole punch box. floor finisher: open the front door. inner finisher: slide the finisher out and open it as shown in pictures 1 and 2. pull out the punch scrap box. empty the punchings into a trash can. slide the empty box back in all the way. close the door, or push the inner finisher back into place. instructions vary by finisher model and options. follow the pictures for your finisher.">
       <summary>
-        <span class="icon supplies" aria-hidden="true">◈</span>
+        <span class="icon supplies" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.8s-6.5 7-6.5 11.7a6.5 6.5 0 0 0 13 0C18.5 9.8 12 2.8 12 2.8z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg></span>
         <span class="title">
           <span class="meta"><b>Supplies</b><i>•</i>2 min</span>
           <strong>Empty the hole punch scrap box</strong>
@@ -1262,6 +1321,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="28"><span aria-hidden="true">▶</span> Watch this in the video (0:28)<small>Hole punch box</small></a></div>
         <div class="gallery" aria-label="Picture guide">
           <div class="gallery-head"><b>Picture guide</b><span>Tap an image to enlarge</span></div>
           <figure><a href="assets/images/empty-punch-scrap/step-1.webp" target="_blank" rel="noopener"><img src="assets/images/empty-punch-scrap/step-1.webp" alt="Inner finisher punch box, pictures 1 to 6" loading="lazy" width="293" height="1035" class="fit"></a><figcaption>Inner finisher</figcaption></figure>
@@ -1281,7 +1341,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="paper-jam" data-cat="Troubleshooting" data-search="clear a paper jam safely follow the animated guide and avoid torn paper inside the device. troubleshooting paper jam misfeed stuck torn door lever roller read the screen to identify the highlighted door or tray. open only the areas shown in the animated guide. turn green knobs and move green levers in the indicated direction. pull paper slowly with both hands and remove every torn piece. close each door firmly and confirm the message clears. do not touch labeled hot areas in the fusing section. call support if paper tears where you cannot safely reach it.">
       <summary>
-        <span class="icon troubleshooting" aria-hidden="true">!</span>
+        <span class="icon troubleshooting" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
         <span class="title">
           <span class="meta"><b>Troubleshooting</b><i>•</i>3 min</span>
           <strong>Clear a paper jam safely</strong>
@@ -1290,6 +1350,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="8"><span aria-hidden="true">▶</span> Watch this in the video (0:08)<small>Finisher jams</small></a><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="61"><span aria-hidden="true">▶</span> Watch this in the video (1:01)<small>Fuser area jams (hot!)</small></a></div>
         <ol>
           <li><span>1</span><p>Read the screen to identify the highlighted door or tray.</p></li>
           <li><span>2</span><p>Open only the areas shown in the animated guide.</p></li>
@@ -1303,7 +1364,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="adf-jam-reset-originals" data-cat="Troubleshooting" data-search="clear a document feeder jam and reload your originals remove a jammed or double-fed original from the top feeder, then reload only the pages the screen asks for. troubleshooting document feeder jam adf original jam multi-feed detection double feed reset originals reload originals top feeder staples clips guide plate if the screen shows a document feeder jam or multi-feed detection (more than one original fed at once), tap start guidance and follow the animated pictures. open the document feeder’s top cover as the pictures show, and gently remove the stuck original. if the pictures show it, lift the feeder and turn the green knob to feed out the paper. close everything the guide had you open. the screen now says “reset the following number of originals” and shows how many. reload those originals with no staples or clips attached, then align the guide plate. tap complete. the copier picks up the job where it left off. access points are shown in light grey. anything green is safe to touch.">
       <summary>
-        <span class="icon troubleshooting" aria-hidden="true">!</span>
+        <span class="icon troubleshooting" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
         <span class="title">
           <span class="meta"><b>Troubleshooting</b><i>•</i>2 min</span>
           <strong>Clear a document feeder jam and reload your originals</strong>
@@ -1312,6 +1373,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="81"><span aria-hidden="true">▶</span> Watch this in the video (1:21)<small>Document feeder jams</small></a></div>
         <div class="gallery" aria-label="Picture guide">
           <div class="gallery-head"><b>Picture guide</b><span>Tap an image to enlarge</span></div>
           <figure><a href="assets/images/adf-jam-reset-originals/step-1.webp" target="_blank" rel="noopener"><img src="assets/images/adf-jam-reset-originals/step-1.webp" alt="Numbered pictures for clearing a document feeder jam" loading="lazy" width="1014" height="1080" class="fit"></a><figcaption>1. Clear the feeder</figcaption></figure>
@@ -1332,7 +1394,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="wrong-paper" data-cat="Troubleshooting" data-search="fix a paper-size mismatch resolve prompts when the device expects a different paper size or type. troubleshooting paper mismatch wrong size type tray letter legal 11x17 bypass check the size and type requested in the on-screen message. confirm the paper in the selected tray matches that request. move the tray guides snugly against the paper. confirm the paper size and type on screen after closing the tray. if appropriate, select a different tray and continue the job. heavy, label, transparency, and letterhead settings affect temperature and speed—do not label them as plain paper.">
       <summary>
-        <span class="icon troubleshooting" aria-hidden="true">!</span>
+        <span class="icon troubleshooting" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
         <span class="title">
           <span class="meta"><b>Troubleshooting</b><i>•</i>2 min</span>
           <strong>Fix a paper-size mismatch</strong>
@@ -1341,6 +1403,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
         <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
       </summary>
       <div class="detail">
+        <div class="watch-links"><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="114"><span aria-hidden="true">▶</span> Watch this in the video (1:54)<small>Document feeder guides</small></a><a class="watch-link" href="#jams-supplies-video" data-video-card="jams-supplies-video" data-t="166"><span aria-hidden="true">▶</span> Watch this in the video (2:46)<small>Paper trays &amp; guides</small></a></div>
         <ol>
           <li><span>1</span><p>Check the size and type requested in the on-screen message.</p></li>
           <li><span>2</span><p>Confirm the paper in the selected tray matches that request.</p></li>
@@ -1354,7 +1417,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="panel-messages" data-cat="Troubleshooting" data-search="common screen messages and what to do quick fixes for toner, paper, and door messages on the copier screen. troubleshooting messages error warning toner low toner is low replace toner toner depleted paper empty out of paper replenish paper close door door open cover open original left on glass “toner is low. replace when indicated.” nothing to do yet. just make sure a spare cartridge is ready. “the toner cartridge needs to be replaced” or “toner is depleted.” replace the color shown (see “replace a toner cartridge”). “replenish paper.” or “load paper into the bypass tray.” add paper of the size shown to the tray shown. “the part indicated … is open.” firmly close the door or cover highlighted on the screen, including any finisher door. “paper of matching size is not available.” load the right paper, or choose a different paper size or tray. “original left on glass.” lift the cover and remove your original. if a message keeps coming back after you fix it, contact your service provider. exact wording can vary a little by model and software version. if a color toner runs out, you can usually keep printing in black by tapping continue.">
       <summary>
-        <span class="icon troubleshooting" aria-hidden="true">!</span>
+        <span class="icon troubleshooting" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
         <span class="title">
           <span class="meta"><b>Troubleshooting</b><i>•</i>2 min</span>
           <strong>Common screen messages and what to do</strong>
@@ -1378,7 +1441,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     </details>
     <details class="card" id="scan-email-missing" data-cat="Troubleshooting" data-search="scan to email didn’t arrive find a missing scan: check spam, the address, and the file size. troubleshooting scan to email not received missing didn't arrive spam junk folder wrong address typo file size too large attachment job list log scan to me check your spam or junk folder, and search your inbox for the copier’s sender name. at the copier, tap job list, then log. find your scan and tap details to see whether it finished and where it went. check that the email address is spelled correctly. if you typed it in, try picking it from the address book instead. if the scan had many pages, color, or high resolution, scan it again using compact pdf or a lower resolution. if your copier shows scan to me after you log in, send a test to yourself. still missing? give your it contact the time of the scan and any error shown in the log. your email system may limit attachment size. your administrator may have set the copier to split large emails or send a download link instead.">
       <summary>
-        <span class="icon troubleshooting" aria-hidden="true">!</span>
+        <span class="icon troubleshooting" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>
         <span class="title">
           <span class="meta"><b>Troubleshooting</b><i>•</i>3 min</span>
           <strong>Scan to email didn’t arrive</strong>
@@ -1396,6 +1459,47 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
           <li><span>6</span><p>Still missing? Give your IT contact the time of the scan and any error shown in the Log.</p></li>
         </ol>
         <div class="note"><b>Trainer tip</b><p>Your email system may limit attachment size. Your administrator may have set the copier to split large emails or send a download link instead.</p></div>
+        <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
+      </div>
+    </details>
+    <details class="card wide" id="jams-supplies-video" data-cat="Video" data-video="1" data-search="jams &amp; supplies walkthrough (christina) a walk around the copier: finisher, fuser, and document feeder jams, the punch box, staples, toner, waste toner, paper trays, usb, scanner glass, and service &amp; supplies. video video walkthrough christina external outside parts jams supplies intro  finisher jams green or blue parts are safe to touch, and every part is labeled (fs2 = finisher, part 2). hole punch box empty it when it is full. staple cartridge replace the clear cartridge; the picture on the finisher guides you. external stapler insert up to 50 sheets for a quick staple. fuser area jams (hot!) hot! pull the paper out with two hands. the door needs a firm close. document feeder jams remove staples and paper clips. open df1, follow the screen, and push where the hand icon shows to close. document feeder guides holds 300 sheets. a beep or size mismatch means the guides are off. replacing toner pull off any orange tape before inserting the new cartridge. waste toner box the copier stops when it is full. watch for “replace waste toner box soon.” paper trays &amp; guides question marks on screen = guides not set. orange light = tray out of paper. usb port print or save to a user box from a flash drive. scanner glass line up the original in the top-left corner. service &amp; supplies call the 800 number with the 8-digit id, or scan the qr code on newer stickers. wrap-up  intro  finisher jams green or blue parts are safe to touch, and every part is labeled (fs2 = finisher, part 2). hole punch box empty it when it is full. staple cartridge replace the clear cartridge; the picture on the finisher guides you. external stapler insert up to 50 sheets for a quick staple. fuser area jams (hot!) hot! pull the paper out with two hands. the door needs a firm close. document feeder jams remove staples and paper clips. open df1, follow the screen, and push where the hand icon shows to close. document feeder guides holds 300 sheets. a beep or size mismatch means the guides are off. replacing toner pull off any orange tape before inserting the new cartridge. waste toner box the copier stops when it is full. watch for “replace waste toner box soon.” paper trays &amp; guides question marks on screen = guides not set. orange light = tray out of paper. usb port print or save to a user box from a flash drive. scanner glass line up the original in the top-left corner. service &amp; supplies call the 800 number with the 8-digit id, or scan the qr code on newer stickers. wrap-up ">
+      <summary>
+        <span class="icon video" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5"/><path d="m10 8.3 5.6 3.7-5.6 3.7z" fill="currentColor"/></svg></span>
+        <span class="title">
+          <span class="meta"><b>Video</b><i>•</i>4 min 14-sec video<em class="vid-badge">▶ Video</em></span>
+          <strong>Jams &amp; Supplies Walkthrough (Christina)</strong>
+          <small>A walk around the copier: finisher, fuser, and document feeder jams, the punch box, staples, toner, waste toner, paper trays, USB, scanner glass, and service &amp; supplies.</small>
+        </span>
+        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+      </summary>
+      <div class="detail">
+        <figure class="video-lesson has-chapters">
+          <div class="player">
+          <video controls preload="metadata" playsinline poster="assets/videos/jams-supplies-walkthrough-poster.jpg">
+            <source src="assets/videos/jams-supplies-walkthrough.mp4" type="video/mp4">
+            <track kind="captions" src="assets/videos/jams-supplies-walkthrough.vtt" srclang="en" label="English">
+            Your browser does not support embedded video. <a href="assets/videos/jams-supplies-walkthrough.mp4">Download the video</a>.
+          </video>
+          <figcaption><span aria-hidden="true">▶</span> Video walkthrough <i>•</i> recorded by Christina <i>•</i> tap a chapter to jump <i>•</i> CC captions</figcaption>
+          </div>
+          <ol class="chapters" aria-label="Video chapters">
+            <li><button type="button" class="chap" data-t="0"><time datetime="PT0S">0:00</time><span><b>Intro</b></span></button></li>
+            <li><button type="button" class="chap" data-t="8"><time datetime="PT8S">0:08</time><span><b>Finisher jams</b><small>Green or blue parts are safe to touch, and every part is labeled (FS2 = finisher, part 2).</small></span></button></li>
+            <li><button type="button" class="chap" data-t="28"><time datetime="PT28S">0:28</time><span><b>Hole punch box</b><small>Empty it when it is full.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="33"><time datetime="PT33S">0:33</time><span><b>Staple cartridge</b><small>Replace the clear cartridge; the picture on the finisher guides you.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="47"><time datetime="PT47S">0:47</time><span><b>External stapler</b><small>Insert up to 50 sheets for a quick staple.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="61"><time datetime="PT61S">1:01</time><span><b>Fuser area jams (hot!)</b><small>Hot! Pull the paper out with two hands. The door needs a firm close.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="81"><time datetime="PT81S">1:21</time><span><b>Document feeder jams</b><small>Remove staples and paper clips. Open DF1, follow the screen, and push where the hand icon shows to close.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="114"><time datetime="PT114S">1:54</time><span><b>Document feeder guides</b><small>Holds 300 sheets. A beep or size mismatch means the guides are off.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="141"><time datetime="PT141S">2:21</time><span><b>Replacing toner</b><small>Pull off any orange tape before inserting the new cartridge.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="149"><time datetime="PT149S">2:29</time><span><b>Waste toner box</b><small>The copier stops when it is full. Watch for “Replace waste toner box soon.”</small></span></button></li>
+            <li><button type="button" class="chap" data-t="166"><time datetime="PT166S">2:46</time><span><b>Paper trays &amp; guides</b><small>Question marks on screen = guides not set. Orange light = tray out of paper.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="204"><time datetime="PT204S">3:24</time><span><b>USB port</b><small>Print or save to a User Box from a flash drive.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="212"><time datetime="PT212S">3:32</time><span><b>Scanner glass</b><small>Line up the original in the top-left corner.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="221"><time datetime="PT221S">3:41</time><span><b>Service &amp; supplies</b><small>Call the 800 number with the 8-digit ID, or scan the QR code on newer stickers.</small></span></button></li>
+            <li><button type="button" class="chap" data-t="240"><time datetime="PT240S">4:00</time><span><b>Wrap-up</b></span></button></li>
+          </ol>
+        </figure>
         <div class="actions"><button type="button" class="copy-btn">Copy steps</button><button type="button" class="print-btn">Print</button></div>
       </div>
     </details>
@@ -1423,18 +1527,43 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
 </footer>
 <script>
 (function(){
-  var q=document.getElementById('q'),cards=[].slice.call(document.querySelectorAll('.card')),tabs=[].slice.call(document.querySelectorAll('.tabs button')),
-      count=document.getElementById('count'),empty=document.getElementById('empty'),tab='All',lib=document.getElementById('training');
-  function apply(){var t=q.value.trim().toLowerCase(),n=0;
-    cards.forEach(function(c){var ok=(tab==='All'||c.dataset.cat===tab||(tab==='Video'&&c.dataset.video))&&(!t||c.dataset.search.indexOf(t)>-1);c.hidden=!ok;if(ok)n++;});
-    count.textContent=n+(n===1?' result':' results');empty.hidden=n>0;}
-  function setTab(name,scroll){tab=name;tabs.forEach(function(b){var a=b.dataset.tab===name;b.classList.toggle('active',a);b.setAttribute('aria-selected',a);});apply();if(scroll)lib.scrollIntoView({block:'start'});}
-  tabs.forEach(function(b){b.addEventListener('click',function(){setTab(b.dataset.tab,true);});});
+  var q=document.getElementById('q'),cards=[].slice.call(document.querySelectorAll('.card')),tabs=[].slice.call(document.querySelectorAll('.tabs button')),fns=[].slice.call(document.querySelectorAll('.fn')),
+      count=document.getElementById('count'),empty=document.getElementById('empty'),tab=null,lib=document.getElementById('training'),
+      title=document.getElementById('lib-title'),eyebrow=document.getElementById('lib-eyebrow'),libIcon=document.getElementById('lib-icon'),back=document.getElementById('back'),
+      home={t:title.textContent,e:eyebrow.textContent},names=tabs.map(function(b){return b.dataset.tab;});
+  function slug(s){return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-');}
+  // three views: "home" = big function buttons only, "cat" = one topic's cards, "search" = matching cards from every topic
+  function apply(){var t=q.value.trim().toLowerCase(),mode=t?'search':(tab?'cat':'home'),n=0;
+    lib.setAttribute('data-mode',mode);
+    cards.forEach(function(c){var ok=mode==='home'||(mode==='search'?c.dataset.search.indexOf(t)>-1:(c.dataset.cat===tab||(tab==='Video'&&c.dataset.video)));c.hidden=!ok;if(ok)n++;});
+    tabs.forEach(function(b){var a=mode==='cat'&&b.dataset.tab===tab;b.classList.toggle('active',a);b.setAttribute('aria-selected',a);});
+    var act=tabs.filter(function(b){return b.classList.contains('active');})[0],bar=act&&act.parentNode;
+    if(act&&bar.clientWidth)bar.scrollLeft=Math.max(0,act.offsetLeft-bar.offsetLeft-(bar.clientWidth-act.offsetWidth)/2);
+    libIcon.className='lib-icon'+(mode==='cat'?' c-'+slug(tab):'');
+    if(mode==='cat'){var f=fns.filter(function(a){return a.dataset.tab===tab;})[0];libIcon.innerHTML=f?f.querySelector('.fn-icon').innerHTML:'';}
+    if(mode==='home'){eyebrow.textContent=home.e;title.textContent=home.t;count.textContent=cards.length+' guides';empty.hidden=true;}
+    else{eyebrow.textContent=mode==='search'?'SEARCH RESULTS':home.t.toUpperCase();title.textContent=mode==='search'?'\u201c'+q.value.trim()+'\u201d':tab;
+      count.textContent=n+(n===1?' result':' results');empty.hidden=n>0;}
+    back.querySelector('span').textContent=mode==='search'?'Clear search':'All topics';}
+  function setTab(name,scroll,push){tab=name||null;apply();
+    if(push!==false){var h=tab?'#topic-'+slug(tab):'#training';if(location.hash!==h&&history.pushState)history.pushState(null,'',h);}
+    if(scroll)lib.scrollIntoView({block:'start'});}
+  // deep links: #topic-copy opens a topic, #card-id opens that card inside its topic, the browser Back button returns to the buttons
+  function route(scroll){var h=decodeURIComponent(location.hash.slice(1)),c;
+    if(h.indexOf('topic-')===0){var nm=names.filter(function(x){return 'topic-'+slug(x)===h;})[0];q.value='';setTab(nm,scroll,false);return;}
+    c=h&&document.getElementById(h);
+    if(c&&c.classList.contains('card')){q.value='';setTab(c.dataset.cat,false,false);cards.forEach(function(o){o.open=o===c;});if(scroll)c.scrollIntoView({block:'start'});return;}
+    setTab(null,false,false);}
+  fns.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();q.value='';setTab(a.dataset.tab,true);});});
+  tabs.forEach(function(b){b.addEventListener('click',function(){setTab(b.dataset.tab,false);});});
+  back.addEventListener('click',function(e){e.preventDefault();if(q.value.trim()){q.value='';apply();}else setTab(null,true);});
+  window.addEventListener('popstate',function(){route(true);});
   q.addEventListener('input',apply);
   q.addEventListener('focus',function(){lib.scrollIntoView({block:'start'});});
-  document.querySelectorAll('.popular button').forEach(function(b){b.addEventListener('click',function(){q.value=b.dataset.q;setTab('All',true);});});
-  document.getElementById('reset').addEventListener('click',function(){q.value='';setTab('All');});
+  document.querySelectorAll('.popular button').forEach(function(b){b.addEventListener('click',function(){q.value=b.dataset.q;apply();lib.scrollIntoView({block:'start'});});});
+  document.getElementById('reset').addEventListener('click',function(){q.value='';setTab(null,true);});
   document.querySelector('[data-goto]').addEventListener('click',function(){q.value='';setTab('Troubleshooting',true);});
+  route(!!location.hash&&location.hash!=='#training'&&location.hash!=='#top');
   // one card open at a time; pause videos when a card closes
   cards.forEach(function(c){c.addEventListener('toggle',function(){if(c.open){cards.forEach(function(o){if(o!==c&&o.open)o.open=false;});}else{c.querySelectorAll('video').forEach(function(v){v.pause();});}});});
   document.querySelectorAll('.print-btn').forEach(function(b){b.addEventListener('click',function(){window.print();});});
@@ -1454,7 +1583,7 @@ summary{gap:12px;padding:16px 14px}.icon{width:40px;height:40px}.detail{padding:
     var mark=function(){var cur=null;bs.forEach(function(b){if(v.currentTime+0.25>=+b.dataset.t)cur=b;});bs.forEach(function(b){b.setAttribute('aria-current',b===cur?'true':'false');});};
     ['timeupdate','seeked','emptied','loadedmetadata'].forEach(function(ev){v.addEventListener(ev,mark);});});
   document.querySelectorAll('.watch-link').forEach(function(a){a.addEventListener('click',function(e){var c=document.getElementById(a.dataset.videoCard);if(!c)return;e.preventDefault();
-    q.value='';setTab('Video');cards.forEach(function(o){if(o!==c&&o.open)o.open=false;});c.open=true;seek(c.querySelector('video'),+a.dataset.t);c.scrollIntoView({block:'start'});});});
+    q.value='';setTab('Video',false);cards.forEach(function(o){if(o!==c&&o.open)o.open=false;});c.open=true;seek(c.querySelector('video'),+a.dataset.t);c.scrollIntoView({block:'start'});});});
   document.addEventListener('keydown',function(e){if(e.key==='/'&&['INPUT','TEXTAREA'].indexOf(document.activeElement.tagName)<0){e.preventDefault();q.focus();}if(e.key==='Escape')q.blur();});
 })();
 </script>
